@@ -1,5 +1,9 @@
+
 <h1 align="center">Murphiyii-skills</h1>
 
+<p align="center">
+  <img src="assets/logo/combo-03a-06a.svg" width="128" alt="Murphiyii-skills logo">
+</p>
 
 <p align="center">
   <a href="https://github.com/Murphiyii/murphiyii-skills/releases"><img src="https://img.shields.io/github/v/release/Murphiyii/murphiyii-skills" alt="Release"></a>

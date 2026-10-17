@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128" width="128" height="128">
+<title>Murphiyii-skills logo</title>
+<g fill="#4F5B6B">
+<circle cx="64" cy="22" r="10"/>
+<circle cx="100.37" cy="85" r="8"/>
+<circle cx="27.63" cy="85" r="7"/>
+<g transform="matrix(0.62 0 0 0.62 24.32 24.66)">
+<path d="M64 17.7L102.1 39.7L64 61.7L25.9 39.7Z"/>
+<path fill-opacity=".6" d="M62 65.2L23.9 43.2L23.9 87.2L62 109.2Z"/>
+<path fill-opacity=".3" d="M66 65.2L104.1 43.2L104.1 87.2L66 109.2Z"/>
+</g>
+</g>
+<path fill="none" stroke="#4F5B6B" stroke-width="8" d="M80.68 25.45A42 42 0 0 1 105.43 70.86M90.82 96.32A42 42 0 0 1 36.56 95.79M22.74 71.87A42 42 0 0 1 47.32 25.45"/>
+</svg>
