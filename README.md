@@ -27,9 +27,9 @@ murphiyii-skills/
 │   ├── animejs-expert.md            Writes, debugs, and migrates Anime.js V4 animations
 │   └── skill-linter.md              Read-only subagent that validates skills
 └── skills/
-    ├── angular-expert-skill/        Angular 20+ guidance
+    ├── angular-expert/              Angular 20+ guidance
     ├── animejs/                     Anime.js 4.5.0 guidance
-    ├── clearly-and-concisely/       Strunk's writing rules
+    ├── writing-clearly-and-concisely/ Strunk's writing rules
     ├── error-logging/               Logs problems to agent-errors.log
     ├── handoff/                     Handoff documents for the next agent
     ├── premortem/                   Failure analysis of a concrete plan
@@ -54,9 +54,9 @@ Copies do not update when this repo changes, so copy again after edits.
 
 | Skill | What it does |
 |---|---|
-| [angular-expert-skill](skills/angular-expert-skill/SKILL.md) | Writes, reviews, and architects Angular 20+ components, services, routing, and forms |
+| [angular-expert](skills/angular-expert/SKILL.md) | Writes, reviews, and architects Angular 20+ components, services, routing, and forms |
 | [animejs](skills/animejs/SKILL.md) | Writes, debugs, reviews, and migrates Anime.js 4.5.0 animations, including V3 to V4 migration |
-| [clearly-and-concisely](skills/clearly-and-concisely/SKILL.md) | Applies Strunk's rules to any prose people will read |
+| [writing-clearly-and-concisely](skills/writing-clearly-and-concisely/SKILL.md) | Applies Strunk's rules to any prose people will read |
 | [error-logging](skills/error-logging/SKILL.md) | Appends problems to `agent-errors.log` so the next agent inherits the warning |
 | [handoff](skills/handoff/SKILL.md) | Writes a `handoff-YYYY-MM-DD-HHmm.md` summary for another agent. Optional argument: the next session's focus |
 | [premortem](skills/premortem/SKILL.md) | Assumes a concrete plan has failed and works backward to failure modes and mitigations. Not for idea-stage brainstorms |

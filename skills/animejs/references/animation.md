@@ -1,5 +1,17 @@
 # Animation: `animate()`
 
+## Contents
+- Targets (`TargetsParam`)
+- Animatable properties
+- Values
+- Tween params (`TweenParamsOptions`), animation-level or per property
+- Playback params (`TimerOptions` + `AnimationOptions`)
+- Keyframes
+- Callbacks (each receives the animation)
+- Methods (all return `this` unless noted)
+- Properties
+- Examples
+
 Checked against: `animation/animation.d.ts`, `timer/timer.d.ts`, `core/clock.d.ts`, `types/index.d.ts` (`AnimationParams`, `TweenKeyValue`, `TweenParamsOptions`, `TimerOptions`, `DurationKeyframes`, `PercentageKeyframes`, `FunctionValue`, `TargetsParam`), `core/consts.d.ts`; defaults from `src/core/globals.js`, behavior from `src/animation/animation.js`.
 
 ```ts
@@ -33,7 +45,7 @@ CSS selector string, `HTMLElement`/`SVGElement`, `NodeList`, plain JS object, or
 
 `fromTo` appears in `TweenValues` in the .d.ts but `src/animation/animation.js` never reads it: use `from` + `to`, or `[from, to]`.
 
-## Tween parameters (`TweenParamsOptions`), animation-level or per property
+## Tween params (`TweenParamsOptions`), animation-level or per property
 | Param | Type | Default |
 |---|---|---|
 | `duration` | number or FunctionValue | `1000` (ms) |
@@ -44,7 +56,7 @@ CSS selector string, `HTMLElement`/`SVGElement`, `NodeList`, plain JS object, or
 
 Composition: `replace` cuts overlapping tweens on the same property; `none` lets them overlap (fastest); `blend` adds values together (additive).
 
-## Playback parameters (`TimerOptions` + `AnimationOptions`)
+## Playback params (`TimerOptions` + `AnimationOptions`)
 | Param | Type | Default |
 |---|---|---|
 | `id` | string or number | auto |

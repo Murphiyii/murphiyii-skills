@@ -7,6 +7,23 @@ description: Behavioral differences and prompting patterns for Claude Fable 5.1 
   Prompts, skills, and tool descriptions that ask the model to write out its thinking or reasoning may be declined with the `reasoning_extraction` category. Ask for a short explanation or a summary of the actions taken instead.
 </Note>
 
+## Contents
+
+* Ask for user-facing progress updates
+* Batch independent tool calls in agent loops
+* Writing density
+* Formatting in chat
+* Quoting retrieved sources
+* Finish the whole task
+* Tell the model what to preserve in compaction summaries
+* Keep changes and tests to what the task asks for
+* Search triggering at low effort
+* Reduce safeguard false positives
+* Prefer targeted edits over whole-file rewrites
+* Leave room for long outputs at xhigh and max effort
+* Let the lead agent keep working while subagents run
+* Give vision work tools to crop and zoom
+
 ## Ask for user-facing progress updates
 
 Claude Fable 5.1's default behavior is to write fewer user-facing updates during long tool-calling turns than Claude Fable 5 does. This becomes more pronounced at higher effort and in longer tool chains. Users see the agent go quiet for minutes at a time, or a final message that covers only the last step rather than the whole task.
@@ -130,7 +147,7 @@ When a query centers on a name you do not confidently recognize, or recognize fr
 
 ## Reduce safeguard false positives
 
-Claude Fable 5.1's safety classifiers produce fewer false positives than Claude Fable 5's did at launch, and finding vulnerabilities in source code is permitted. False positives still occur, and a blocked request returns `stop_reason: "refusal"`. Three situations make them more likely:
+Claude Fable 5.1's safety classifiers produce fewer false positives than Claude Fable 5's, and finding vulnerabilities in source code is permitted. False positives still occur, and a blocked request returns `stop_reason: "refusal"`. Three situations make them more likely:
 
 * **Compile-check phrasing:** Instead of "Does this program compile without errors?", ask "Are there any bugs in this program?"
 * **Lesser-known programming languages:** Give the model context about what the language is and how it works, for example by giving it access to the language's documentation.

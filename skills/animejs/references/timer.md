@@ -8,7 +8,7 @@ createTimer(parameters?: TimerParams): Timer   // Timer extends Clock
 ```
 A Timer is an animation without targets: a scheduled, controllable clock for callbacks (game loops, counters, polling, syncing non-anime work). `JSAnimation` and `Timeline` extend `Timer`, so every method below exists on them too.
 
-## Parameters
+## Params
 | Param | Type | Default |
 |---|---|---|
 | `duration` | number | **`Infinity`** (unlike animations, which default to 1000) |
@@ -57,4 +57,4 @@ clock.seek(5000);
 clock.resume();
 ```
 
-Related: `utils.sync(cb)` runs `cb` on the next engine tick via a 1-frame Timer (see utilities.md). For a custom render loop (Three.js etc.) see engine.md.
+Related: `utils.sync(cb)` runs `cb` on the next engine tick via a 1-frame Timer. For a custom render loop (Three.js etc.), set `engine.useDefaultMainLoop = false` and call `engine.update()` in your loop.

@@ -1,8 +1,15 @@
 # Klein Premortem — Protocol Reference
 
-Full reference for the `analyze` and `facilitate` modes. Trimmed from the repo's
-`PREMORTEM.md` source of truth (Klein, HBR 2007; Mitchell/Russo/Pennington 1989;
-Kahneman 2011). Read this when you need the mechanism, the category set, the step
+## Contents
+- 1. What it is (and why it works)
+  - Biases it counters
+- 2. When to run one (and when NOT to)
+- 3. The protocol: 6 steps (~60–90 min, 4–10 people)
+- 4. Common pitfalls (one-line fixes)
+- 5. Sources
+
+Full reference for the `analyze` and `facilitate` modes. Based on
+Klein, HBR 2007; Mitchell/Russo/Pennington 1989; and Kahneman 2011. Read this when you need the mechanism, the category set, the step
 sequence, or the when/when-not gate.
 
 ---
@@ -11,7 +18,7 @@ sequence, or the when/when-not gate.
 
 A **premortem** is run *before* a plan is executed. You imagine the project has
 already failed catastrophically, then work backward to generate the reasons why.
-Output: a ranked list of risks + a revised plan with mitigations baked in.
+Output: a ranked list of failure modes + a revised plan with mitigations baked in.
 
 It is the mirror image of the postmortem — you *prospectively* explain a failure
 that hasn't happened. Oddly, that produces sharper risk identification than asking
@@ -60,24 +67,24 @@ Re-run lightweight (~15 min) premortems at major milestones or scope changes.
 - The team has **no authority** to change the plan — it becomes theater.
 - Psychological safety is so low honest critique is impossible — fix that first, or
   use anonymous capture only.
-- You actually want a **Red Team** (adversarial outside review) — see `variants.md`.
+- You actually want a **Red Team** (adversarial outside review) — it fits when stakes are very high, the plan is mature, and you can afford a parallel team.
 
 ---
 
 ## 3. The protocol — 6 steps (~60–90 min, 4–10 people)
 
-| # | Step | Duration | What happens |
+| # | Workshop step | Duration | What happens |
 |---|------|----------|--------------|
 | 1 | **Set the scene** | 5–10 min | Facilitator restates the plan as if it's about to launch; everyone confirms understanding. Open the capture surface. |
 | 2 | **Declare the failure** | 1–2 min | "Imagine we are [6 months / 1 year] into the future. We executed this plan exactly as written. The outcome was a complete disaster. It has failed." |
 | 3 | **Silent individual writing** | 5–10 min | Each person writes, **in past tense**, every plausible reason for the failure. Silent and independent. Quantity over quality. |
 | 4 | **Round-robin share** | 15–20 min | Each person reads **one reason at a time**, going round until all are surfaced and posted. Capture only — no debate yet. |
 | 5 | **Consolidate & prioritize** | 10–15 min | Cluster duplicates, group by category, then dot-vote: each person picks top 3 (most likely × most damaging). |
-| 6 | **Strengthen the plan** | 15–20 min | For top-ranked risks assign **mitigation · owner · early-warning signal · trigger · review date**. Add to the risk register. |
+| 6 | **Strengthen the plan** | 15–20 min | For top-ranked failure modes assign **mitigation · owner · early-warning signal · trigger · review date**. Add to the risk register. |
 
-In solo `analyze` mode, Claude runs steps 1–6 internally — but keeps **generation
-(steps 2–4) strictly separate from evaluation (steps 5–6)**, which is the mechanism
-the whole protocol depends on.
+In solo `analyze` mode, Claude runs the six workshop steps internally — but keeps **generation
+(workshop steps 2–4, covered by `analyze` Steps 1–2) strictly separate from evaluation (workshop steps 5–6, covered by `analyze` Steps 3 onward)**, which is the mechanism
+the whole protocol depends on. Cite these as "workshop step N", because SKILL.md numbers the `analyze` Steps differently.
 
 **Categories** (cover all of them; don't let Technical crowd out the rest):
 Technical · People/Team · Market/Customer · External/Vendor · Governance/Process ·
@@ -93,7 +100,7 @@ Financial · Communication.
    last; allow anonymous capture.
 3. **Failure scoped too narrowly** — only minor delays surface. → Frame as
    **"complete disaster, reputation damage, project killed"** to widen the search.
-4. **No owner / no follow-through.** → Every top risk gets owner + mitigation +
+4. **No owner / no follow-through.** → Every top failure mode gets owner + mitigation +
    trigger + review date in writing.
 5. **One-off ritual.** → Re-run a 15-min lightweight version at every milestone.
 
@@ -114,9 +121,3 @@ Financial · Communication.
 - Atlassian Team Playbook — *Pre-Mortem Play*.
 - Miro — *Pre-Mortem Template*.
 - Wikipedia — *Pre-mortem*.
-
-**Adjacent reading**
-- Janis, I. (1972). *Victims of Groupthink*.
-- Tetlock & Gardner (2015). *Superforecasting*.
-- Gawande, A. (2009). *The Checklist Manifesto*.
-- Heuer, R. (1999). *Psychology of Intelligence Analysis*.

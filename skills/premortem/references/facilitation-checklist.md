@@ -1,9 +1,9 @@
 # Facilitation Checklist — `facilitate` mode
 
 For running a **live premortem workshop** with people in the room (4–10 participants,
-~60–90 min). Pair this with the assets: `canvas-template.md` (Block A),
-`kickoff-script.md` (step 2 words), `capture-grid.md` (Block B), `mitigation-table.md`
-(Block C).
+~60–90 min). Pair this with the assets: the Block A canvas,
+the kickoff script (workshop step 2 words), the Block B capture grid,
+and the Block C mitigation table.
 
 ---
 
@@ -21,21 +21,21 @@ For running a **live premortem workshop** with people in the room (4–10 partic
 
 ## Agenda (60–90 min)
 
-| # | Step | Time | Notes |
+| # | Workshop step | Time | Notes |
 |---|------|------|-------|
-| 1 | Set the scene | 5–10 min | Restate the plan as if it's about to launch; confirm shared understanding; open the canvas (`canvas-template.md`). |
-| 2 | Declare the failure | 1–2 min | Read the kickoff script aloud (`kickoff-script.md`). Go big: complete disaster. |
+| 1 | Set the scene | 5–10 min | Restate the plan as if it's about to launch; confirm shared understanding; open the Block A canvas. |
+| 2 | Declare the failure | 1–2 min | Read the kickoff script aloud. Go big: complete disaster. |
 | 3 | Silent writing | 5–10 min | Everyone writes reasons in **past tense**, silently, independently. Quantity over quality. |
-| 4 | Round-robin share | 15–20 min | One reason per person per turn until exhausted. Capture into `capture-grid.md`. **No debate yet.** |
+| 4 | Round-robin share | 15–20 min | One reason per person per turn until exhausted. Capture into the Block B capture grid. **No debate yet.** |
 | 5 | Consolidate & prioritize | 10–15 min | Cluster duplicates, group by category, dot-vote top 3 (likely × damaging). |
-| 6 | Strengthen the plan | 15–20 min | Top risks → `mitigation-table.md` (mitigation · owner · early-warning · trigger · review date). |
+| 6 | Strengthen the plan | 15–20 min | Top failure modes → Block C mitigation table (mitigation · owner · early-warning · trigger · review date). |
 
 Allow 60 min for ≤6 people / small plan; 90 min for larger groups or plans.
 
 ## During — Do
 
 - Frame strictly in **past tense**: "what caused the failure", not "what could".
-- **Enforce silent writing** in step 3 — even 60 s of chat anchors everyone.
+- **Enforce silent writing** in workshop step 3 — even 60 s of chat anchors everyone.
 - **Round-robin**, one item per person per turn, until lists are exhausted.
 - Capture **all** reasons; defer judgment to consolidation.
 - Let the **most junior person speak first**; sponsor last.
@@ -45,14 +45,14 @@ Allow 60 min for ≤6 people / small plan; 90 min for larger groups or plans.
 - Don't allow "what if X happens?" framing — convert it to "X happened, why?".
 - Don't let discussion bleed into brainstorming — keep generation and evaluation
   phases separate.
-- Don't skip the assignment step — unowned risks die in the doc.
+- Don't skip the assignment step — unowned failure modes die in the doc.
 - Don't run it as a one-off ritual and never revisit — schedule the review.
 
 ## After the session
 
-- [ ] Within 24 h: circulate the consolidated risk list + assigned mitigations
+- [ ] Within 24 h: circulate the consolidated failure-mode list + assigned mitigations
       (use the follow-up email template below).
-- [ ] Add the top 5 risks to the project's standing risk register.
+- [ ] Add the top 5 failure modes to the project's standing risk register.
 - [ ] Set a **calendar trigger** to re-review at the next milestone.
 - [ ] Track which predicted failure modes actually materialized — calibrates future
       premortems with this team.

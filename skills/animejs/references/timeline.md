@@ -7,7 +7,7 @@ const { createTimeline } = anime;
 createTimeline(parameters?: TimelineParams): Timeline   // Timeline extends Timer
 ```
 
-## Parameters (`TimelineParams` = TimerOptions & TimelineOptions & callbacks)
+## Params (`TimelineParams` = TimerOptions & TimelineOptions & callbacks)
 | Param | Type | Default | Notes |
 |---|---|---|---|
 | `defaults` | `DefaultsParams` | global defaults | Inherited by every child (`ease`, `duration`, `delay`, `loop`, `alternate`, `composition`, `modifier`, callbacks...). |

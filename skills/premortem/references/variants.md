@@ -1,8 +1,7 @@
 # Variants & Related Techniques — when to swap
 
 The premortem isn't always the right tool. Use this table to redirect the user when
-another technique fits better. Full 8-row set from the `PREMORTEM.md` source.
-
+another technique fits better.
 | Technique | Core idea | Pick it when… |
 |-----------|-----------|----------------|
 | **Premortem (Klein)** | The inside team imagines failure as a *fait accompli* and works backward. | You want fast, cheap, team-owned risk surfacing on a near-final plan. *(This skill's default.)* |

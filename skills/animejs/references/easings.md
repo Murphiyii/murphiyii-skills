@@ -4,7 +4,7 @@ Checked against: `easings/index.d.ts`, `easings/eases/index.d.ts`, `easings/ease
 
 `ease` accepts: a built-in name string, an easing function `(t: number) => number`, or a `Spring`. Default `'out(2)'`. Used by `ease`, `playbackEase`, `stagger({ ease })`, `onScroll({ sync })`, draggable `releaseEase`, layout `ease`.
 
-From the global: `const { eases, spring, cubicBezier, steps, linear, irregular } = anime;`, or through the `easings` namespace (`anime.easings.spring(...)`).
+From the `anime` global: `const { eases, spring, cubicBezier, steps, linear, irregular } = anime;`, or through the `easings` namespace (`anime.easings.spring(...)`).
 
 ## Built-in names (strings, or functions on `eases`)
 Types: `in`, `out`, `inOut`, `outIn`. Families: `Quad Cubic Quart Quint Sine Circ Expo Bounce Back Elastic`.
@@ -17,7 +17,7 @@ Types: `in`, `out`, `inOut`, `outIn`. Families: `Quad Cubic Quart Quint Sine Cir
 
 No `ease` prefix (V3 `'easeOutQuad'` is wrong).
 
-## Easing generators (take them from the global and call them; string forms are removed)
+## Easing generators (take them from the `anime` global and call them; string forms are removed)
 | Function | Signature | Defaults | Notes |
 |---|---|---|---|
 | `cubicBezier` | `cubicBezier(mX1?, mY1?, mX2?, mY2?)` | `.5, 0, .5, 1` | Same as CSS cubic-bezier. |
@@ -32,7 +32,7 @@ No `ease` prefix (V3 `'easeOutQuad'` is wrong).
 spring(parameters?: SpringParams): Spring
 createSpring(parameters?: SpringParams): Spring   // deprecated in 4.5.0 (console.warn), use spring()
 ```
-Two parameter modes:
+Two param modes:
 - Perceived: `bounce` (-1..1, default `.5`), `duration` (perceived ms, 10..10000, default `628`). Used when either is provided.
 - Physics: `mass` (default `1`), `stiffness` (`100`), `damping` (`10`), `velocity` (`0`).
 - `onComplete(animation)`: fires when the perceived duration is reached (before the spring fully settles).
@@ -59,4 +59,4 @@ animate('.j', { y: -20, delay: stagger(100, { ease: 'out(3)' }) });
 const { engine } = anime;
 engine.defaults.ease = 'outElastic(1, .5)'; // change global default
 ```
-WAAPI specifics (CSS easing strings, `waapi.convertEase`) are in waapi.md.
+In `waapi.animate()`, native CSS easing strings (`'ease-in-out'`, `'cubic-bezier(...)'`, `'steps(6, start)'`, `'linear(...)'`) pass through unchanged, while anime.js easing names, functions and `spring()` are converted to a CSS `linear()` string. `waapi.convertEase(fn, samples = 100)` returns that string for native `Element.animate()`.

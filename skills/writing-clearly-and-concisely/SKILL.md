@@ -1,6 +1,6 @@
 ---
-name: clearly-and-concisely
-description: Apply Strunk's timeless writing rules to ANY prose humans will read. Documentation, commit messages, error messages, explanations, reports, or UI text. Makes your writing clearer, stronger, and more professional.
+name: writing-clearly-and-concisely
+description: Applies Strunk's timeless writing rules to ANY prose humans will read. Use when writing or editing documentation, commit messages, error messages, explanations, reports, or UI text. Makes writing clearer, stronger, and more professional.
 ---
 
 # Writing Clearly and Concisely
@@ -9,7 +9,7 @@ description: Apply Strunk's timeless writing rules to ANY prose humans will read
 
 William Strunk Jr.'s *The Elements of Style* (1918) teaches you to write clearly and cut ruthlessly.
 
-**WARNING:** `elements-of-style.md` consumes ~12,000 tokens. Read it only when writing or editing prose.
+**WARNING:** [elements-of-style.md](elements-of-style.md) consumes ~12,000 tokens. Read it when drafting or revising prose longer than a few sentences, or when unsure about a rule. For a commit message or error message, apply the rules below directly.
 
 ## When to Use This Skill
 
@@ -21,7 +21,13 @@ Use this skill whenever you write prose for humans:
 - Reports, summaries, or any explanation
 - Editing to improve clarity
 
-**If you're writing sentences for a human to read, use this skill.**
+## Example
+
+Before: There were a number of dependencies that were missing, which was the reason that the build failed.
+
+After: The build failed because dependencies were missing.
+
+(Rule 13, omit needless words; rule 12, definite, specific, concrete language.)
 
 ## Limited Context Strategy
 
@@ -56,7 +62,3 @@ When context is tight:
 
 ### Section V: Words and Expressions Commonly Misused
 Alphabetical reference for usage questions
-
-## Bottom Line
-
-Writing for humans? Read `elements-of-style.md` and apply the rules. Low on tokens? Dispatch a subagent to copyedit with the guide.

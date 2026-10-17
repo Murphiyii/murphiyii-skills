@@ -1,7 +1,4 @@
-# Angular Core Knowledge
-
-## Introduction
-Maintained by a dedicated team at Google, Angular provides a broad suite of tools, APIs, and libraries to simplify and streamline your development workflow.
+# Angular Core Concepts Knowledge
 
 ## Coding Style Guide
 ### Naming

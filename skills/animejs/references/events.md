@@ -12,7 +12,7 @@ Triggers or scrubs a Timer, Animation, Timeline, or `waapi.animate()` animation 
 animate('.square', { x: '15rem', autoplay: onScroll({ /* params */ }) });
 ```
 
-## Settings
+## Params
 | Param | Type | Default | Notes |
 |---|---|---|---|
 | `container` | TargetsParam | `document.body` (window) | Scrolling element. |

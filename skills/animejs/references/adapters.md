@@ -2,7 +2,7 @@
 
 Checked against: `adapters/index.d.ts`, `adapters/registry.d.ts` (`registerAdapter`, `Adapter`, `TargetAdapter`, `TargetAdapterEntry`), `adapters/three/index.d.ts`, `adapters/three/adapter.d.ts` (`threeAdapter`), `adapters/three/instance.d.ts` (`getInstances`, `commitChanges`, `Instance`); behavior and property list from `src/adapters/three/index.js` and `src/adapters/three/object3d.js`; usage from `examples/threejs/transforms`, `tests/suites/threejs.test.js`.
 
-**Not available with the CDN UMD bundle this setup uses.** The `anime` global has no `registerAdapter`, `threeAdapter`, `getInstances` or `commitChanges`, so Three.js targets and custom adapters need the ESM package (npm `animejs` with a bundler, or an import map). Say so before writing any code from this page; the examples below are ESM on purpose.
+**Not available with the CDN UMD bundle this setup uses.** The `anime` global has no `registerAdapter`, `threeAdapter`, `getInstances` or `commitChanges`, so Three.js targets and custom adapters need the ESM package (npm `animejs` with a bundler: `npm install animejs@4.5.0`, or an import map). Say so before writing any code from this page; the examples below are ESM on purpose.
 
 **Adapters are NOT exported from the root `'animejs'` package or the UMD/ESM bundles.** Import them from subpaths:
 - `animejs/adapters`: `registerAdapter` only.
@@ -44,7 +44,7 @@ animate(instances[42], { scale: 2 });
 Instance props: `x y z rotateX rotateY rotateZ scaleX scaleY scaleZ scale skewX skewY skewZ transformOriginX transformOriginY transformOriginZ opacity visible`. Writes are flushed in `mesh.onBeforeRender`; call `commitChanges(mesh)` if you read `mesh.instanceMatrix` between a tick and a render. `opacity` affects the shared material (all instances). `visible` is a no-op on `InstancedMesh` (use `scale: 0`).
 
 ### Render loop
-Keep your own `renderer.setAnimationLoop(render)`; anime updates values on its own rAF. To tick anime from the same loop, see engine.md (`engine.useDefaultMainLoop = false; engine.update()`).
+Keep your own `renderer.setAnimationLoop(render)`; anime.js updates values on its own rAF. To tick anime.js from the same loop, set `engine.useDefaultMainLoop = false` and call `engine.update()` inside it.
 
 ## Custom adapters (`registerAdapter`)
 ```ts

@@ -5,6 +5,19 @@ description: "Prompting patterns specific to Claude Sonnet 5.5: effort, initiati
 
 This guide covers the prompting patterns specific to Claude Sonnet 5.5.
 
+## Contents
+
+* Calibrate effort
+* Steer initiative and scope
+* Running without up-front thinking
+* Reasoning tasks with JSON output
+* User-facing progress updates
+* Tool use in chat and knowledge work
+* Mid-turn user messages
+* Verification on coding tasks
+* Tools for complex visual inputs
+* Safeguard refusals
+
 ## Calibrate effort
 
 Lower effort changes how Claude Sonnet 5.5 finishes agentic work. At `low`, it keeps its thinking short and can skip verifying a change. At `low` and `medium`, on long agentic tasks, it's more likely to stop and check in with the user before it finishes.

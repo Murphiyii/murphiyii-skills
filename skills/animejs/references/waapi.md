@@ -18,7 +18,7 @@ A thin layer over native `Element.animate()`: runs off the main thread for `tran
 | Hardware-accelerated `transform`, `opacity`, `filter`, `clip-path` | `onUpdate`/`onRender`/`onLoop` callbacks, `modifier`, keyframes with mixed timing |
 | Small bundle | Timelines with complex composition, Animatable, Draggable integrations |
 
-## Parameters
+## Params
 | Param | Type | Default |
 |---|---|---|
 | property values | `WAAPIKeyframeValue`: string, number, array (keyframes), function `(target, i, targets)`, or `{ to, from, duration, delay, ease, composition }` | |
@@ -37,13 +37,13 @@ A thin layer over native `Element.animate()`: runs off the main thread for `tran
 Discrepancy: `WAAPIAnimationOptions` in `types/index.d.ts` declares `Reversed?` and `Alternate?` (capitalized). `src/waapi/waapi.js` reads lowercase `params.reversed` and `params.alternate`. Write lowercase; capitalized keys are silently ignored at runtime.
 
 Value handling:
-- Individual transforms (`x`, `y`, `translateX`, `rotate`, `scale`, ...) work: anime registers `--translateX` etc. CSS custom properties so they compose independently. Where `CSS.registerProperty` is unsupported, src skips the registration and individual transforms do not animate (use `transform` strings instead).
+- Individual transforms (`x`, `y`, `translateX`, `rotate`, `scale`, ...) work: anime.js registers `--translateX` etc. CSS custom properties so they compose independently. Where `CSS.registerProperty` is unsupported, src skips the registration and individual transforms do not animate (use `transform` strings instead).
 - Unitless numbers get `px` for sizes/translate/`perspective`/`fontSize`/`borderRadius`, `deg` for rotate/skew.
 - Arrays are keyframes (`y: [0, -30, 0]`); `{ from, to }` for explicit from.
 - `fill` is always `'both'`. On finish (unless `persist: true`) the final styles are committed inline and the native animations are cancelled, so the end state stays without calling `commitStyles()`.
 - `cancel()` also commits current styles; `revert()` restores the original inline styles (it resets the whole `transform`, which can affect other WAAPI animations on the same element).
 
-Easing: anime names (`'outExpo'`, `'inOut(3)'`), functions, and `spring()` are converted to a CSS `linear()` string; a spring also sets the duration. Native CSS strings pass through: `'ease'`, `'ease-in-out'`, `'linear(...)'`, `'cubic-bezier(...)'`, `'steps(6, start)'`, `'step-end'`.
+Easing: anime.js easing names (`'outExpo'`, `'inOut(3)'`), functions, and `spring()` are converted to a CSS `linear()` string; a spring also sets the duration. Native CSS strings pass through: `'ease'`, `'ease-in-out'`, `'linear(...)'`, `'cubic-bezier(...)'`, `'steps(6, start)'`, `'step-end'`.
 
 ## WAAPIAnimation methods (return `this`)
 `play()`, `reverse()`, `pause()`, `resume()`, `restart()`, `alternate()`, `seek(time, muteCallbacks?)`, `complete()`, `cancel()`, `revert()` (cancel and restore inline styles), `commitStyles()`, `forEach(cb | methodName)` (iterate native `Animation`s), `then(cb?)` (Promise).

@@ -8,7 +8,7 @@ createScope(params?: ScopeParams): Scope
 ```
 Everything created inside a scope constructor (animations, timers, timelines, animatables, draggables, scroll observers, text splitters, layouts, WAAPI animations, nested scopes) is registered and reverted together by `scope.revert()`. This is the V4 way to clean up in React, Vue, Svelte, Angular, or any component lifecycle.
 
-## Parameters (`ScopeParams`)
+## Params (`ScopeParams`)
 | Param | Type | Default | Notes |
 |---|---|---|---|
 | `root` | selector, element, `ReactRef` (`{ current }`), or `AngularRef` (`{ nativeElement }`) | `document` | String selectors in `animate()`, `utils.$()` etc. are queried inside root only. |

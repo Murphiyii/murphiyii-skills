@@ -1,7 +1,9 @@
 # Angular Testing Knowledge
 
 ## Unit Testing Setup
-- **Framework**: Vitest (default in new CLI) or Karma/Jasmine.
+- **Framework**: Vitest (default for new projects since Angular v21) or Karma/Jasmine.
+- **Vitest prerequisites**: New projects include `vitest` and `jsdom`. An existing Karma project installs them with `npm install --save-dev vitest jsdom`, then follows the Angular "Migrating from Karma to Vitest" guide.
+- **Karma/Jasmine prerequisites**: `ng new <name> --test-runner=karma`, or in an existing project `npm install --save-dev karma karma-chrome-launcher karma-coverage karma-jasmine karma-jasmine-html-reporter jasmine-core @types/jasmine` plus the guide's `angular.json` setup.
 - **Command**: `ng test`
 - **Configuration**: `angular.json` or `vitest.config.ts`.
 
@@ -30,7 +32,7 @@ beforeEach(async () => {
   ```
 
 ## Service Testing
-- **Spies**: Use `jasmine.createSpyObj` or `vi.fn()` to mock dependencies.
+- **Spies**: Use `jasmine.createSpyObj` (Karma/Jasmine) or `vi.fn()` (Vitest) to mock dependencies.
 - **Injection**: `TestBed.inject(MyService)`.
 
 ## HTTP Testing

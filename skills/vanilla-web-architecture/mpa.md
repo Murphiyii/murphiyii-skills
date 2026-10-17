@@ -15,10 +15,12 @@ src/pages/<route>.js   entry module for one page, wiring only
 1. Each page loads exactly one entry module (`src/pages/<route>.js`) that creates the
    store, registers the components the page uses and wires them.
 2. Each page imports only the modules it needs.
-3. Shared layout (header, nav, footer) is a Web Component imported by each page.
+3. The shared page shell (header, nav, footer) is a Web Component imported by each page.
 4. The store resets on every navigation. State that must survive a page change goes
-   through an `api/` wrapper (`sessionStorage`/`localStorage`) and is rehydrated when the
-   page entry module creates the store. Transient values may travel in the URL query string.
+   through an `api/` repository and is rehydrated when the page entry module creates the
+   store. The repository uses `localStorage` (durable) by default, and `sessionStorage`
+   (per-tab) only for state that must end with the tab. Transient values may travel in
+   the URL query string.
    A page restored from the back/forward cache keeps its old store, so the entry module
    re-reads durable state on `pageshow` when `event.persisted` is true and on `storage`
    events. Otherwise a stale page can overwrite newer data on its next save.

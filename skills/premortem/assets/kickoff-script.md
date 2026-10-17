@@ -1,6 +1,6 @@
-# Kickoff Script — Step 2 (Declare the Failure)
+# Kickoff Script — Workshop Step 2 (Declare the Failure)
 
-The exact words the facilitator reads aloud at step 2. Going **big** (complete
+The exact words the facilitator reads aloud at workshop step 2. Going **big** (complete
 disaster, not a minor slip) is deliberate — it widens the search and surfaces tail
 risks. Swap in the real project name and a concrete worst-credible outcome.
 

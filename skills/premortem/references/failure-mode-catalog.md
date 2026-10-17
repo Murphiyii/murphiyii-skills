@@ -1,6 +1,6 @@
 # Failure-Mode Catalog — Software / Product
 
-Seed archetypes for `analyze` step 2. Each entry is a short **past-tense story**
+Seed archetypes for `analyze` Step 2. Each entry is a short **past-tense story**
 with a *because* clause — a concrete template to riff on, **not** a label to copy
 verbatim. During a premortem, adapt each one to the specifics of the user's plan,
 and aim to cover every category (don't let Technical eat the page).

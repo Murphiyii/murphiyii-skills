@@ -9,15 +9,15 @@ createAnimatable(targets: TargetsParam, parameters: AnimatableParams): Animatabl
 ```
 Use for values that change continuously from input (cursor follow, pointer parallax, sliders). Each declared property becomes a getter/setter function that retargets a running tween instead of creating a new animation per event. Much cheaper than calling `animate()` in a `mousemove` handler.
 
-## Parameters
+## Params
 Property keys declare which properties are animatable. Value forms:
 | Form | Meaning |
 |---|---|
 | `x: 500` | Number = transition duration (ms) for that property. |
-| `x: { duration, ease, unit, modifier, composition }` | Per-property settings. `unit` e.g. `'rem'`, `'rad'`. |
+| `x: { duration, ease, unit, modifier, composition }` | Per-property params. `unit` e.g. `'rem'`, `'rad'`. |
 | `x: 0` | Duration 0 = set instantly (use with your own smoothing). |
 
-Global settings (apply to all properties unless overridden): `duration` (default 1000), `ease` (default `'out(2)'`, prefer `out` types), `modifier`. `unit` works only per property (`x: { unit: 'rem' }`): a top-level `unit` key is treated as an animatable property named `unit`. A top-level `composition` is ignored (always overwritten with `replace`); set `composition` per property instead. Callbacks: `onBegin`, `onUpdate`, `onRender`, `onComplete`, `onPause`, etc. (fired by an internal callbacks animation).
+Top-level params (apply to all properties unless overridden): `duration` (default 1000), `ease` (default `'out(2)'`, prefer `out` types), `modifier`. `unit` works only per property (`x: { unit: 'rem' }`): a top-level `unit` key is treated as an animatable property named `unit`. A top-level `composition` is ignored (always overwritten with `replace`); set `composition` per property instead. Callbacks: `onBegin`, `onUpdate`, `onRender`, `onComplete`, `onPause`, etc. (fired by an internal callbacks animation).
 
 ## Property functions (`AnimatableProperty`)
 ```ts
@@ -55,4 +55,4 @@ const dial = createAnimatable('.dial', { rotate: { unit: 'rad' }, ease: 'linear'
 dial.rotate(Math.PI / 2, 300);
 ```
 
-Gotchas: only properties declared at creation get functions. Values passed to setters are numbers (unit comes from the `unit` setting). Call `revert()` on cleanup (or create it inside `createScope().add()`).
+Gotchas: only properties declared at creation get functions. Values passed to setters are numbers (unit comes from the `unit` param). Call `revert()` on cleanup (or create it inside `createScope().add()`).

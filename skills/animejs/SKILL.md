@@ -3,7 +3,7 @@ name: animejs
 description: Anime.js V4 expert reference. Use whenever code imports or mentions anime.js / animejs (any version), or the user asks to write, debug, review, refactor, or migrate JavaScript animations with anime.js, including V3 to V4 migration, timelines, stagger, scroll-triggered or scroll-synced animation (onScroll), SVG line drawing, morphing and motion paths, draggable elements, text splitting and scramble effects, layout/FLIP transitions, animatables (cursor follow), springs and easings, WAAPI, Three.js animation through anime adapters, and React/Vue cleanup with createScope. Prevents V3 syntax such as anime({ targets }), easing 'easeOutQuad', anime.timeline, and direction 'alternate'.
 ---
 
-# Anime.js V4
+# anime.js V4
 
 Target version: **anime.js 4.5.0**. Projects load the UMD bundle from the CDN:
 
@@ -11,9 +11,9 @@ Target version: **anime.js 4.5.0**. Projects load the UMD bundle from the CDN:
 <script src="https://cdn.jsdelivr.net/npm/animejs@4.5.0/dist/bundles/anime.umd.min.js"></script>
 ```
 
-Always write the URL with the `@4.5.0` pin. Without it jsDelivr serves the npm `latest` tag, which moves to a new major version silently (a `5.0.0-beta` already exists). If a page loads another version, treat anything below as possibly stale.
+Always write the URL with the `@4.5.0` pin. Without it jsDelivr serves the npm `latest` tag, which moves to a new major version silently. If a page loads another version, treat anything below as possibly stale.
 
-Source of truth, in order: `assets/anime.umd.js` in this skill folder (the unminified build of that same 4.5.0 bundle: JSDoc typedefs for every params object, defaults, and the implementation), then the docs site. The file is about 430 KB: Grep it for the bare name of a typedef, function, or parameter (`AnimationParams`, `createTimeline =`, `loopDelay`), never Read it whole. The `references/` files condense it. Their "Checked against" lines and `src/...` citations name the 4.5.0 `.d.ts` and source files they were verified against; those files are not shipped here, so grep the symbol name in the bundle instead (line numbers will not match).
+Source of truth, in order: `assets/anime.umd.js` in this skill folder (the unminified build of that same 4.5.0 bundle: JSDoc typedefs for every params type, defaults, and the implementation), then the docs site. The file is about 430 KB: Grep it for the bare name of a typedef, function, or parameter (`AnimationParams`, `createTimeline =`, `loopDelay`), never Read it whole. The `references/` files condense it. Their "Checked against" lines and `src/...` citations name the 4.5.0 `.d.ts` and source files they were verified against; those files are not shipped here, so grep the symbol name in the bundle instead (line numbers will not match).
 
 ## When to use
 - Writing any animation with anime.js, or choosing between its APIs.
@@ -22,13 +22,13 @@ Source of truth, in order: `assets/anime.umd.js` in this skill folder (the unmin
 
 ## Imports
 
-The bundle defines one global, `anime`, a plain namespace object (not a function). Destructure what you need, in a classic `<script>` that runs after the bundle tag:
+The bundle defines one global, `anime`, a plain object (not a function). Destructure what you need, in a classic `<script>` that runs after the bundle tag:
 
 ```js
 const { animate, createTimeline, stagger, utils } = anime;
 ```
 
-Never write `import ... from 'animejs'` or subpaths like `'animejs/text'`: there is no module to import. The examples in `references/` are already written with `const { ... } = anime;` (except `adapters.md`, which only works with ESM).
+Never write `import ... from 'animejs'` or subpaths like `'animejs/text'`: there is no module to import. The examples in `references/` are already written with `const { ... } = anime;` (except `references/adapters.md`, which only works with ESM).
 
 The global holds all 67 root exports: `animate`, `createTimer`, `createTimeline`, `createAnimatable`, `createDraggable`, `createScope`, `onScroll`, `scrollContainers`, `engine`, `createLayout`, `stagger`, the utils helpers also at top level (`$`, `get`, `set`, `remove`, `random`, `randomPick`, `shuffle`, `createSeededRandom`, `clamp`, `round`, `snap`, `wrap`, `lerp`, `damp`, `mapRange`, `sync`, `keepTime`, `cleanInlineStyles`, ...), easings (`eases`, `spring`, `createSpring` (deprecated), `cubicBezier`, `steps`, `linear`, `irregular`), SVG (`createDrawable`, `morphTo`, `createMotionPath`), text (`splitText`, `scrambleText`, `split` (deprecated)), `waapi`, the classes (`JSAnimation`, `Timer`, `Timeline`, `Animatable`, `Draggable`, `Scope`, `ScrollObserver`, `AutoLayout`, `TextSplitter`, `Spring`, `WAAPIAnimation`), the namespaces `utils`, `easings`, `svg`, `text`, plus `globals`.
 
@@ -46,7 +46,7 @@ The global holds all 67 root exports: `animate`, `createTimer`, `createTimeline`
 8. **Timelines**: `createTimeline({ defaults: { ease, duration } })` then `.add(targets, params, position)`. Child defaults go in `defaults`. Positions: `'-=200'`, `'+=100'`, `'<'`, `'<<'`, `'<<+=100'`, labels, or `stagger()`.
 9. **Object syntax uses `to`/`from`**: `opacity: { from: 0, to: 1, duration: 300 }`. `[0, 1]` is from/to; 3+ plain values are keyframes.
 10. **Function values get `(target, index, targets)`**: the third argument is the targets array (`targets.length`), not a count.
-11. **Helpers live in `utils` and at the top level of the global**: `utils.set`, `utils.get`, `utils.remove`, `utils.random`, `utils.$`; `modifier: utils.round(2)` replaces `round: 100`. With the UMD bundle `anime.set(...)`, `anime.random(...)` and `anime.stagger(100)` are also valid V4 (the same functions); only `anime.<name>` where the name is not one of the 67 exports (`anime.timeline`, `anime.running`, `anime.path`, `anime.setDashoffset`, `anime.penner`, `anime.speed`) is V3. `stagger(100, { from: 'center', reversed: true, ease: 'out(2)' })`.
+11. **Helpers live in `utils` and at the top level of the `anime` global**: `utils.set`, `utils.get`, `utils.remove`, `utils.random`, `utils.$`; `modifier: utils.round(2)` replaces `round: 100`. On the `anime` global, `anime.set(...)`, `anime.random(...)` and `anime.stagger(100)` are also valid V4 (the same functions); only `anime.<name>` where the name is not one of the 67 exports (`anime.timeline`, `anime.running`, `anime.path`, `anime.setDashoffset`, `anime.penner`, `anime.speed`) is V3. `stagger(100, { from: 'center', reversed: true, ease: 'out(2)' })`.
 12. **Playback semantics changed**: `play()` always goes forward, `reverse()` always backward, `resume()` continues the current direction, `alternate()` flips it. `progress` is 0..1.
 13. **Transforms are individual properties**: `x`, `y`, `z`, `rotate`, `scale`, `skewX`... and compose across separate animations. Overlapping animations on the same property replace each other (`composition: 'replace'`); use `'blend'` for additive or `'none'` to overlap.
 14. **Always clean up in components**: build inside `createScope({ root }).add(() => { ... })` and call `scope.revert()` on unmount. `revert()` (not `pause()`) restores styles and removes listeners on every instance type.
@@ -55,7 +55,7 @@ The global holds all 67 root exports: `animate`, `createTimer`, `createTimeline`
 17. **Text**: `splitText(el, { chars: true })` (words split by default; only the first matching element is split, so loop for several). For `lines: true`, animate inside `splitter.addEffect(self => animate(self.lines, ...))` because lines re-split after font load and resize. `text.split()` is deprecated.
 18. **Timers default to infinite duration** (`createTimer({ onUpdate })` runs forever); animations default to 1000ms.
 19. **WAAPI**: `waapi.animate(targets, params)` for hardware-accelerated CSS-only animations; only `onComplete` exists. Use lowercase `alternate`/`reversed` (the typedefs capitalize them by mistake).
-20. **Do not guess**: if a parameter or method is not in the matching reference file, grep `assets/anime.umd.js` for it before using it.
+20. **Do not guess**: if a param or method is not in the matching reference file, grep `assets/anime.umd.js` for it before using it.
 
 ## Task to reference map
 
@@ -107,5 +107,5 @@ scope.revert();
 
 ## Working method
 1. Identify the module(s) from the map above and read those reference files.
-2. Write V4 code that destructures from the `anime` global. Re-check every parameter name against the reference (or grep `assets/anime.umd.js`).
+2. Write V4 code that destructures from the `anime` global. Re-check every param name against the reference (or grep `assets/anime.umd.js`).
 3. Scan your output with the review grep at the bottom of `references/v3-to-v4-pitfalls.md`.

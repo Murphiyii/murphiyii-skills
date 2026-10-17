@@ -6,9 +6,9 @@ Checked against: `layout/layout.d.ts` (`AutoLayout`, `AutoLayoutParams`, `Layout
 const { createLayout } = anime;
 createLayout(root: DOMTargetSelector, params?: AutoLayoutParams): AutoLayout
 ```
-Animates layout changes (position, size, reorder, enter/leave, moving between parents) that you make with normal DOM/CSS code. It records a snapshot, you mutate the DOM, then it animates from old to new state (FLIP). New in v4 (not in the 4.0.0 docs).
+Animates layout changes (position, size, reorder, enter/leave, moving between parents) that you make with normal DOM/CSS code. It records a snapshot, you mutate the DOM, then it animates from old to new state (FLIP). V4 only (not in the 4.0.0 docs).
 
-## Parameters (`AutoLayoutParams` = animation params + options)
+## Params (`AutoLayoutParams` = animation params + options)
 | Param | Type | Default |
 |---|---|---|
 | `children` | selector or array of selectors | `'*'` (all descendants of root) |

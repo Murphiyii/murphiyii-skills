@@ -1,9 +1,9 @@
-# Block B — Failure-Reasons Capture Grid
+# Block B — Failure-Modes Capture Grid
 
-Fill during steps 3–5. The **Severity** column carries the Doshi overlay on top of
+Fill during workshop steps 3–5. The **Severity** column carries the Doshi overlay on top of
 Klein's L×I scoring (a deliberate extension — see SKILL.md).
 
-| #  | Failure reason (past tense)                         | Category    | L (1–5) | I (1–5) | Score (L×I) | Severity            | Votes |
+| #  | Failure mode (past tense)                           | Category    | L (1–5) | I (1–5) | Score (L×I) | Severity            | Votes |
 |----|------------------------------------------------------|-------------|---------|---------|-------------|---------------------|-------|
 | 1  | _e.g. "Vendor X missed the integration deadline."_   | External    | 4       | 5       | 20          | 🐯 Tiger            | ●●●   |
 | 2  |                                                      |             |         |         |             |                     |       |

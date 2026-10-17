@@ -11,7 +11,7 @@ scrambleText(params?: ScrambleTextParams): FunctionValue<ScrambleTextTween>
 
 **Only the first matching element is split** (a selector, NodeList or array resolves to its first element). For several elements, call `splitText()` once per element: `utils.$('p').forEach($p => splitText($p, ...))`.
 
-## splitText parameters
+## splitText params
 | Param | Type | Default |
 |---|---|---|
 | `lines` | `boolean \| string \| SplitTemplateParams \| (node) => string` | off |

@@ -7,6 +7,20 @@ This guide covers the prompting patterns specific to Claude Opus 5.5.
 
 Claude Opus 5.5 generates output tokens more than 30 percent faster than Claude Opus 5 and tends to finish the same task with fewer tokens.
 
+## Contents
+
+* Capabilities relevant to prompting
+* Prompts written for thinking disabled
+* Unattended agentic runs
+* Safeguard refusals
+* User-facing progress updates
+* Explore context in multi-app workflows
+* Time signals for multiagent harnesses
+* Thinking instructions in chat system prompts
+* Mark pasted text in user messages
+* Tools for complex visual inputs
+* Frontend design defaults
+
 ## Capabilities relevant to prompting
 
 The capabilities that matter most for prompting are:

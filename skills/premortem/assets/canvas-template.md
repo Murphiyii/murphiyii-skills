@@ -1,6 +1,6 @@
 # Block A — Session Canvas
 
-Fill this in before kick-off (or hand it to the user as a template in `artifacts` mode).
+Fill this in before kickoff (or hand it to the user as a template in `artifacts` mode).
 
 ```
 PROJECT / DECISION         : __________________________________
@@ -10,7 +10,7 @@ FACILITATOR                : __________________________________
 SCRIBE                     : __________________________________
 DATE                       : __________________________________
 
-IMAGINED FAILURE STATEMENT (read aloud at step 2 — see kickoff-script.md):
+IMAGINED FAILURE STATEMENT (read aloud at workshop step 2 — see the kickoff script):
 "It is [DATE + horizon]. We executed the plan exactly as written.
  The outcome was a complete disaster. Take 5–10 minutes — write down,
  in past tense, every reason why this failed."

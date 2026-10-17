@@ -1,26 +1,26 @@
 ---
 name: error-logging
-description: Append problems encountered during work to `agent-errors.log` in the working directory so the next agent instance inherits a warning trail. Use this skill whenever a tool errors, a build/test/lint/type-check fails, an MCP call returns something unexpected, an assumption has to be revised mid-task, a workaround is applied because the intended approach did not work, or any unexpected tooling or codebase behavior occurs, even if the issue is fixed afterwards. Trigger on the event itself, not on a user request to log.
+description: Appends problems encountered during work to `agent-errors.log` in the working directory so the next agent inherits a warning trail. Use this skill whenever a tool errors, a build/test/lint/type-check fails, an MCP call returns something unexpected, an assumption has to be revised mid-task, a workaround is applied because the intended approach did not work, or any unexpected tooling or codebase behavior occurs, even if the issue is fixed afterwards. Trigger on the event itself, not on a user request to log.
 ---
 
 # Error Logging
 
-This skill maintains a forward-facing warning trail for whoever (human or agent) picks up this work next. Whenever something goes wrong during a task, append a short, structured block to `agent-errors.log` in the directory you were invoked in, which is usually the repo root. Do not search around for a "more correct" root, consistency beats cleverness here.
+This skill maintains a forward-facing warning trail for the next agent that picks up this work. Whenever something goes wrong during a task, append a short, structured entry to `agent-errors.log` in the working directory (the directory you were invoked in, usually the repo root). Do not search around for a "more correct" root, consistency beats cleverness here.
 
-The point is not a debugging journal for the current session, it is a heads-up for the *next* instance: "here is a thing that bit me, here is what I now know about it." Treat the log as a gift to your future self.
+The point is not a debugging journal for the current session, it is a heads-up for the *next* agent: "here is a problem I hit, here is what I now know about it."
 
 ## When to log
 
-Append a block whenever any of these happen during work:
+Append an entry whenever any of these happen during work:
 
 - A tool call (Bash, MCP, anything) errors, exits non-zero, or returns an unexpected result
 - A build, test, lint, or type-check fails, even if you fix it afterwards
 - An assumption you started the task with has to be revised mid-task (e.g. wrong node ID format, instance vs. source component, wrong file path, API shape differs from expectation)
 - You apply a workaround because the intended approach did not work
 - Tooling behaves unexpectedly (python, npm, the codebase itself, a missing node, empty metadata, etc.)
-- Anything you would want to warn the next agent instance about
+- Anything you would want to warn the next agent about
 
-If a single task surfaces several distinct problems, write several blocks, one per problem.
+If a single task surfaces several distinct problems, write several entries, one per problem.
 
 ## When NOT to log
 
@@ -28,13 +28,13 @@ Skip the log for:
 
 - Successful steps and routine progress
 - Expected MCP behavior
-- Tasks that complete with zero friction (in that case, write nothing at all)
+- Tasks that complete with no problems (in that case, write nothing at all; an empty append is worse than no append)
 
 The signal-to-noise ratio matters. A log full of "everything went fine" entries trains the next agent to ignore it.
 
 ## Format
 
-One block per distinct problem. Two problems in one task means two blocks, back to back:
+One entry per distinct problem. Two problems in one task means two entries, back to back:
 
 ```
 --- 2026-10-04 19:03 ---
@@ -50,27 +50,35 @@ Cause: <if it only surfaced because of the first problem, say so here>
 Resolution: <...>
 ```
 
-Never fold two problems into one block as `Problem 1:` / `Problem 2:`. A cascade still gets its own block, with the link back stated in its `Cause:` line.
+Never fold two problems into one entry as `Problem 1:` / `Problem 2:`. A cascade still gets its own entry, with the link back stated in its `Cause:` line.
+
+The four fields are fixed: do not add, drop or reorder them. A filled-in entry:
+
+```
+--- 2026-10-04 19:03 ---
+Task: Add pagination to the orders list
+Problem: `npm test` failed with "Cannot find module '@testing-library/dom'"
+Cause: Peer dependency missing after upgrading @testing-library/react
+Resolution: Worked around by running `npm install -D @testing-library/dom`
+```
 
 **Take the timestamp from the clock**, in the same call that writes the entry (`Get-Date` / `date`, see below). You are told today's date but never the current time, so a hand-written time is a guess, and `00:00` placeholders make entries impossible to order against git history.
 
-**Write entries in English**, whatever language the session is in. Quote exact error messages verbatim, including any non-ASCII they contain. Vague paraphrases ("something failed") are nearly useless to the next reader.
+**Write entries in English**, whatever language the session is in. Quote exact error messages verbatim, including any non-ASCII they contain. Vague paraphrases ("something failed") are nearly useless to the next agent.
 
 ## Before appending
 
-Grep the log for the trap first: `grep -i '<keyword>' agent-errors.log`. If an entry already describes it, still append, but make `Problem:` a back-reference ("same MSYS2 path rewriting as 2026-08-20") plus only what is new about this occurrence. Re-describing a known trap from scratch buries the signal under repetition.
+Grep the log for the problem first: `grep -i '<keyword>' agent-errors.log` (PowerShell: `Select-String -Pattern '<keyword>' agent-errors.log`). If an entry already describes it, still append, but make `Problem:` a back-reference ("same MSYS2 path rewriting as 2026-08-20") plus only what is new about this occurrence. Re-describing a known problem from scratch buries the signal under repetition.
 
 ## Rules
 
 - **Always append.** Never overwrite or truncate the log. Existing entries are not yours to revise.
 - **Create the file on first write** if it does not yet exist.
-- **One block per distinct problem.** Multiple blocks per task is fine and often correct.
-- **Write nothing** if the task completed without friction. An empty append is worse than no append.
 - **No em dashes**, per the global writing rule.
 
 ## How to append
 
-Two commands per entry: one for the header, so the timestamp is real, and one for the body, so nothing inside it gets expanded.
+Two commands per entry: one for the header, so the timestamp is real, and one for the body, so nothing inside it gets expanded. Use whichever shell the session is already in.
 
 PowerShell:
 
@@ -109,8 +117,8 @@ EOF
 
 The heredoc stays quoted (`<<'EOF'`) so that `$`, backticks and quotes in a pasted error message survive intact. A quoted heredoc cannot interpolate `$(date)`, hence the separate `printf`.
 
-The leading blank line in each block keeps entries visually separated when the file is read top to bottom.
+The leading blank line in each entry keeps entries visually separated when the file is read top to bottom.
 
 ## Why this matters
 
-LLM agents start each session cold. Without a trail, every new instance walks into the same traps, re-discovers the same broken assumption, re-applies the same workaround, re-debugs the same flaky tool. A short, honest log of friction encountered is one of the cheapest, highest-leverage things you can leave behind. Treat each entry as a small letter to the next agent: *"I tripped on this so you don't have to."*
+LLM agents start each session cold. Without a trail, every new agent walks into the same problems, re-discovers the same broken assumption, re-applies the same workaround, re-debugs the same flaky tool. A short, honest log of problems encountered is one of the cheapest, highest-leverage things you can leave behind.

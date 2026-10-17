@@ -1,4 +1,4 @@
-# Angular Security & Internationalization Knowledge
+# Angular Security & i18n Knowledge
 
 ## HttpClient Security
 Built-in protection against common web vulnerabilities.
@@ -21,7 +21,4 @@ provideHttpClient(
 - **Disable**: `withNoXsrfProtection()`
 
 ## Internationalization (i18n)
-Process of adapting the application for different locales.
-- **Internationalization**: Designing for global use.
-- **Localization**: Building versions for specific locales (translation, data formatting).
 - **Locale**: Determines formatting for dates, numbers, currencies, etc.

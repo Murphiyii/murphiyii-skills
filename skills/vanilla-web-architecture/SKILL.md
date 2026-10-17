@@ -1,6 +1,6 @@
 ---
 name: vanilla-web-architecture
-description: Architecture for maintainable no-framework web apps (plain HTML, CSS, JS; Web Components, one-way store, multi-page). Use when building or extending such an app.
+description: Architecture for maintainable no-framework web apps (plain HTML, CSS, JS; Web Components, one-way store, multi-page or single-page). Use when building or extending such an app.
 ---
 
 Plain HTML 5, CSS 3 and JavaScript only: no frameworks, no build step, no npm runtime
@@ -10,10 +10,14 @@ them in one sentence that it needs a static server and give the command
 (`python -m http.server`). Keep the modules: classic scripts would drop the import
 structure this skill depends on.
 
+Prerequisites: Node 20 or later for `node --test` (stable from v20.0.0), Python 3 for
+`python -m http.server`, and the `package.json` script `"test": "node --test"`.
+
 Multi-page app (one HTML file per route): also read [mpa.md](mpa.md).
 Single-page app (client-side routing): also read [spa.md](spa.md).
-A single-screen app uses the layout below alone; add mpa.md or spa.md when a second
-page appears.
+If the user has not said which, default to a multi-page app.
+A single-screen app uses the folder layout below alone; add mpa.md or spa.md when a
+second page appears.
 
 ## Core pattern
 Component-Based Architecture with a small Flux/Redux-lite store. State flows one way:
@@ -33,7 +37,7 @@ event -> action -> reducer -> store -> subscribed components re-render.
    as `store` and `services` properties to each top-level component, and each component
    passes them to its children. The base class renders once the element is connected and
    both `services` and `store` are set, in whatever order that happens.
-5. Data access lives in `api/` wrappers (Repository pattern), use-case logic in
+5. Data access lives in `api/` repositories (Repository pattern), use-case logic in
    `services/` (Service Layer), so swapping the data source never touches components.
    Durable state is written back by a `persistOnChange(store, repository)` subscriber in
    `services/`, which the entry module starts after rehydrating. It takes the repository
@@ -68,8 +72,58 @@ src/
   components/<name>/<name>.js + <name>.css
   store/        createStore, reducers, actions
   services/     use-case logic
-  api/          fetch/localStorage wrappers
+  api/          fetch/localStorage repositories
   styles/tokens.css  base.css (layer order, page-level reset)
+```
+
+## Wiring example
+Rules 4 and 5 in code (reducer, service, repository and component CSS omitted):
+```js
+// components/base/base-element.js
+export class BaseElement extends HTMLElement {
+  #store;
+  #services;
+  #unsubscribe;
+  get store() { return this.#store; }
+  set store(value) { this.#store = value; this.#start(); }
+  get services() { return this.#services; }
+  set services(value) { this.#services = value; this.#start(); }
+  connectedCallback() { this.#start(); }
+  disconnectedCallback() { this.#unsubscribe?.(); this.#unsubscribe = null; }
+  #start() {
+    if (!this.isConnected || !this.#store || !this.#services || this.#unsubscribe) return;
+    this.root ??= this.attachShadow({ mode: 'open' });
+    this.render();
+    this.#unsubscribe = this.#store.subscribe(() => this.render());
+  }
+}
+
+// components/todo-count/todo-count.js
+import { BaseElement } from '../base/base-element.js';
+
+class TodoCount extends BaseElement {
+  render() {
+    this.label ??= this.root.appendChild(document.createElement('p'));
+    this.label.textContent = `${this.store.getState().todos.length} todos`;
+  }
+}
+customElements.define('todo-count', TodoCount);
+
+// main.js
+import { createStore } from './store/store.js';
+import { reducer, initialState } from './store/reducer.js';
+import { todoRepository } from './api/todo-repository.js';
+import { createTodoService } from './services/todo-service.js';
+import { persistOnChange } from './services/persist-on-change.js';
+import './components/todo-count/todo-count.js';
+
+const services = { todos: createTodoService(todoRepository) };
+const store = createStore(reducer, { ...initialState, ...todoRepository.load() });
+persistOnChange(store, todoRepository);
+
+const app = document.querySelector('todo-count');
+app.services = services;
+app.store = store;
 ```
 
 ## Scope
@@ -81,4 +135,4 @@ tradeoff in one sentence.
 
 ## Done when
 Every rule above holds for each changed file. Check each rule against the changes and fix
-every violation.
+every violation. Run `node --test` and fix any failures.

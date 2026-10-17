@@ -38,8 +38,8 @@ query$ = toObservable(this.query);
 ```
 - **Timing**: Asynchronous (uses effect).
 
-### `rxResource` (Experimental)
-Reactive resource based on RxJS stream.
+### `rxResource`
+Reactive resource based on RxJS stream. Stable since Angular v22; experimental in v20 and v21.
 ```typescript
 userResource = rxResource({
   params: () => ({ id: this.userId() }),

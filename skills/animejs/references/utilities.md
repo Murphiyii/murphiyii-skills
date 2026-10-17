@@ -2,7 +2,7 @@
 
 Checked against: `utils/index.d.ts`, `utils/stagger.d.ts`, `utils/target.d.ts`, `utils/random.d.ts`, `utils/time.d.ts`, `utils/chainable.d.ts`, `utils/number.d.ts`, `core/helpers.d.ts` (`clamp`, `round`, `snap`, `lerp`, `forEachChildren`, `addChild`, `removeChild`), `core/styles.d.ts` (`cleanInlineStyles`), `core/targets.d.ts` (`registerTargets` = `$`), `types/index.d.ts` (`StaggerParams`, `StaggerFunction`); behavior from `src/utils/*.js`.
 
-All utils are on the global both at the top level (`const { stagger, random, $ } = anime;`) and under the `utils` namespace (`const { utils } = anime; utils.random()`).
+All utils are on the `anime` global both at the top level (`const { stagger, random, $ } = anime;`) and under the `utils` namespace (`const { utils } = anime; utils.random()`).
 
 ## stagger
 ```ts

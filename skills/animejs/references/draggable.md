@@ -8,8 +8,8 @@ createDraggable(target: TargetsParam, parameters?: DraggableParams): Draggable
 ```
 Drags one element (first match) with velocity-based release, container bounds, snapping and auto-scroll. Target can also be a plain JS object (wrapped in a proxy), e.g. to drive a carousel value without moving a DOM node.
 
-## Parameters
-Any parameter typed `| ((draggable) => value)` can be a function, re-evaluated on `refresh()`.
+## Params
+Any param typed `| ((draggable) => value)` can be a function, re-evaluated on `refresh()`.
 
 | Param | Type | Default |
 |---|---|---|
