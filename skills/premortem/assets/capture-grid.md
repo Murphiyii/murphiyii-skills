@@ -1,7 +1,7 @@
-# Block B — Failure-Modes Capture Grid
+# Block B: Failure-Modes Capture Grid
 
 Fill during workshop steps 3–5. The **Severity** column carries the Doshi overlay on top of
-Klein's L×I scoring (a deliberate extension — see SKILL.md).
+Klein's L×I scoring (a deliberate extension, see SKILL.md).
 
 | #  | Failure mode (past tense)                           | Category    | L (1–5) | I (1–5) | Score (L×I) | Severity            | Votes |
 |----|------------------------------------------------------|-------------|---------|---------|-------------|---------------------|-------|
@@ -13,11 +13,11 @@ Klein's L×I scoring (a deliberate extension — see SKILL.md).
 **Categories**: Technical · People/Team · Market/Customer · External/Vendor ·
 Governance/Process · Financial · Communication
 
-**Severity (Doshi overlay — pick exactly one per row):**
-- 🐯 **Tiger** — high likelihood × high impact. Acute. Address now.
-- 🐘 **Elephant** — low likelihood × catastrophic impact. Slow-moving, easy to
+**Severity (Doshi overlay, pick exactly one per row):**
+- 🐯 **Tiger**: high likelihood × high impact. Acute. Address now.
+- 🐘 **Elephant**: low likelihood × catastrophic impact. Slow-moving, easy to
   ignore, fatal if hit. Plan for it.
-- 📄 **Paper Tiger** — looks scary but low L × low I, or already well-mitigated.
+- 📄 **Paper Tiger**: looks scary but low L × low I, or already well-mitigated.
   Note and de-prioritize.
 
 Severity is a **judgment overlay, not a formula**: a 4×4 with strong existing

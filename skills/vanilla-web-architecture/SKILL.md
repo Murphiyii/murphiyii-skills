@@ -1,6 +1,7 @@
 ---
 name: vanilla-web-architecture
 description: Architecture for maintainable no-framework web apps (plain HTML, CSS, JS; Web Components, one-way store, multi-page or single-page). Use when building or extending such an app.
+allowed-tools: Bash(node --test *)
 ---
 
 Plain HTML 5, CSS 3 and JavaScript only: no frameworks, no build step, no npm runtime

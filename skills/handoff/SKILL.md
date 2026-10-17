@@ -1,7 +1,7 @@
 ---
 name: handoff
 description: Compacts the current conversation into a handoff document for another agent to pick up. Use when ending a session, switching to a fresh agent or context window, or when the user asks for a handoff or session summary.
-argument-hint: "What will the next session be used for?"
+argument-hint: "[next session focus]"
 ---
 
 Write a handoff document summarising the current conversation so a fresh agent can continue the work. Save to the current workspace in folder /handoff.

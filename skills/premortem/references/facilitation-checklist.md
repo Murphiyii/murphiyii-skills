@@ -1,4 +1,4 @@
-# Facilitation Checklist — `facilitate` mode
+# Facilitation Checklist: `facilitate` mode
 
 For running a **live premortem workshop** with people in the room (4–10 participants,
 ~60–90 min). Pair this with the assets: the Block A canvas,
@@ -9,7 +9,7 @@ and the Block C mitigation table.
 
 ## Before the session
 
-- [ ] Plan is documented and shared **at least 24 h in advance** — no one reasons
+- [ ] Plan is documented and shared **at least 24 h in advance**: no one reasons
       about a phantom.
 - [ ] Right people in the room: **planning team + 1–2 outside skeptics** if possible.
       Sponsor present but speaks **last**.
@@ -32,21 +32,21 @@ and the Block C mitigation table.
 
 Allow 60 min for ≤6 people / small plan; 90 min for larger groups or plans.
 
-## During — Do
+## During: Do
 
 - Frame strictly in **past tense**: "what caused the failure", not "what could".
-- **Enforce silent writing** in workshop step 3 — even 60 s of chat anchors everyone.
+- **Enforce silent writing** in workshop step 3: even 60 s of chat anchors everyone.
 - **Round-robin**, one item per person per turn, until lists are exhausted.
 - Capture **all** reasons; defer judgment to consolidation.
 - Let the **most junior person speak first**; sponsor last.
 
-## During — Don't
+## During: Don't
 
-- Don't allow "what if X happens?" framing — convert it to "X happened, why?".
-- Don't let discussion bleed into brainstorming — keep generation and evaluation
+- Don't allow "what if X happens?" framing: convert it to "X happened, why?".
+- Don't let discussion bleed into brainstorming: keep generation and evaluation
   phases separate.
-- Don't skip the assignment step — unowned failure modes die in the doc.
-- Don't run it as a one-off ritual and never revisit — schedule the review.
+- Don't skip the assignment step: unowned failure modes die in the doc.
+- Don't run it as a one-off ritual and never revisit: schedule the review.
 
 ## After the session
 
@@ -54,7 +54,7 @@ Allow 60 min for ≤6 people / small plan; 90 min for larger groups or plans.
       (use the follow-up email template below).
 - [ ] Add the top 5 failure modes to the project's standing risk register.
 - [ ] Set a **calendar trigger** to re-review at the next milestone.
-- [ ] Track which predicted failure modes actually materialized — calibrates future
+- [ ] Track which predicted failure modes actually materialized. This calibrates future
       premortems with this team.
 
 ---
@@ -62,12 +62,12 @@ Allow 60 min for ≤6 people / small plan; 90 min for larger groups or plans.
 ## Follow-up email template
 
 ```
-Subject: Premortem follow-up — [PROJECT] — top risks & owners
+Subject: Premortem follow-up, [PROJECT], top risks & owners
 
 Thanks all. We imagined [PROJECT] failed by [HORIZON] and worked backward.
 Top risks and the mitigations we assigned:
 
-1. [Risk] — owner @[name] — mitigation: [action] — review by [date]
+1. [Risk], owner @[name], mitigation: [action], review by [date]
 2. …
 3. …
 4. …
