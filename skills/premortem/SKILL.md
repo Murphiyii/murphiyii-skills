@@ -34,7 +34,7 @@ Pick the mode from context before running:
 | --------------------- | ---------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------- |
 | **`analyze`** (default) | "premortem this plan", `/premortem`, "what could go wrong", "stress-test this"     | Run the protocol solo and return ranked failure-mode table + top-5 mitigation table + one-paragraph verdict                  |
 | **`facilitate`**      | "help me facilitate a workshop", "we're running a session", "I'm the facilitator"  | Produce pre-session checklist, agenda with timings, kickoff script, round-robin tracker, follow-up email template            |
-| **`artifacts`**       | "give me the templates", "I just want the canvas", "send me the capture grid"      | Fill the Block A / B / C templates from `assets/` and return as Markdown (hand off to `docx` skill if user wants Word output) |
+| **`artifacts`**       | "give me the templates", "I just want the canvas", "send me the capture grid"      | Fill the Block A / B / C templates from `assets/` and return as Markdown (hand off to `anthropic-skills:docx` skill if user wants Word output) |
 
 If ambiguous, default to `analyze` and say which mode you picked in one line.
 
@@ -120,7 +120,7 @@ Return: pre-session checklist + 60–90 min agenda with timings + the kickoff sc
 
 ## `artifacts` mode
 
-User just wants the templates, no analysis. Read the four asset files and return them filled with whatever the user has provided (plan name, horizon, etc.), or with placeholders clearly marked `[ … ]` if they haven't. If they ask for Word/Confluence output, hand off to the `docx` skill.
+User just wants the templates, no analysis. Read the four asset files and return them filled with whatever the user has provided (plan name, horizon, etc.), or with placeholders clearly marked `[ … ]` if they haven't. If they ask for Word/Confluence output, hand off to the `anthropic-skills:docx` skill.
 
 ---
 
