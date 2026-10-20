@@ -8,6 +8,7 @@
 <p align="center">
   <a href="LICENSE"><img src="https://img.shields.io/badge/license-Apache%202.0-blue.svg" alt="License: Apache 2.0"></a>
   <img src="https://img.shields.io/badge/built%20for-Claude%20Code-D97757" alt="Built for Claude Code">
+  <img src="https://img.shields.io/badge/agents-2-blue.svg" alt="Agents">
   <img src="https://img.shields.io/badge/skills-9-blue.svg" alt="Skills">
 </p>
 
