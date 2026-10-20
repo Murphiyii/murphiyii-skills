@@ -11,7 +11,7 @@
   <a href="LICENSE"><img src="https://img.shields.io/badge/license-Apache%202.0-blue.svg" alt="License: Apache 2.0"></a>
   <img src="https://img.shields.io/badge/built%20for-Claude%20Code-D97757" alt="Built for Claude Code">
   <img src="https://img.shields.io/badge/PRs-welcome-brightgreen.svg" alt="PRs welcome">
-  <img src="https://img.shields.io/badge/skills-8-blue.svg" alt="Skills">
+  <img src="https://img.shields.io/badge/skills-9-blue.svg" alt="Skills">
 </p>
 
 <p align="center">A workspace of Claude Code skills and agents.</p>
@@ -35,6 +35,7 @@ murphiyii-skills/
     ├── animejs/                     Anime.js 4.5.0 guidance
     ├── writing-clearly-and-concisely/ Strunk's writing rules
     ├── error-logging/               Logs problems to agent-errors.log
+    ├── goalify/                     Rewrites a task as a /goal completion condition
     ├── handoff/                     Handoff documents for the next agent
     ├── premortem/                   Failure analysis of a concrete plan
     ├── prompt-builder/              Rewrites prompts for a specific Claude model
@@ -62,6 +63,7 @@ Copies do not update when this repo changes, so copy again after edits.
 | [animejs](skills/animejs/SKILL.md) | Writes, debugs, reviews, and migrates Anime.js 4.5.0 animations, including V3 to V4 migration |
 | [writing-clearly-and-concisely](skills/writing-clearly-and-concisely/SKILL.md) | Applies Strunk's rules to any prose people will read |
 | [error-logging](skills/error-logging/SKILL.md) | Appends problems to `agent-errors.log` so the next agent inherits the warning |
+| [goalify](skills/goalify/SKILL.md) | Rewrites a task prompt into a `/goal`-ready completion condition and shows it as a copyable code block. Does not run `/goal` |
 | [handoff](skills/handoff/SKILL.md) | Writes a `handoff-YYYY-MM-DD-HHmm.md` summary for another agent. Optional argument: the next session's focus |
 | [premortem](skills/premortem/SKILL.md) | Assumes a concrete plan has failed and works backward to failure modes and mitigations. Not for idea-stage brainstorms |
 | [prompt-builder](skills/prompt-builder/SKILL.md) | Rewrites a prompt for a specific Claude model |
