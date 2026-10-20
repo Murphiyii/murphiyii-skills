@@ -6,11 +6,8 @@
 </p>
 
 <p align="center">
-  <a href="https://github.com/Murphiyii/murphiyii-skills/releases"><img src="https://img.shields.io/github/v/release/Murphiyii/murphiyii-skills" alt="Release"></a>
-  <a href="https://github.com/Murphiyii/murphiyii-skills/stargazers"><img src="https://img.shields.io/github/stars/Murphiyii/murphiyii-skills?style=social" alt="Stars"></a>
   <a href="LICENSE"><img src="https://img.shields.io/badge/license-Apache%202.0-blue.svg" alt="License: Apache 2.0"></a>
   <img src="https://img.shields.io/badge/built%20for-Claude%20Code-D97757" alt="Built for Claude Code">
-  <img src="https://img.shields.io/badge/PRs-welcome-brightgreen.svg" alt="PRs welcome">
   <img src="https://img.shields.io/badge/skills-9-blue.svg" alt="Skills">
 </p>
 
