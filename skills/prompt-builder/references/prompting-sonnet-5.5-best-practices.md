@@ -87,7 +87,7 @@ Remove older instructions such as "hold all findings for the final response". If
 If long tool-calling turns still go quiet for longer than you want, your harness can prompt an update. Have it count consecutive tool-calling steps that send the user no text or progress update. After several in a row, for example five, append a one-turn reminder after the latest tool results, with text like this:
 
 ```text wrap
-The user hasn't heard from you in a while — say in a few words what you're doing, then continue.
+The user hasn't heard from you in a while: say in a few words what you're doing, then continue.
 ```
 
 If the turn stays quiet, stop sending reminders after the second or third. Frequent harness text after tool results can make the model suspect a prompt injection, as Mid-turn user messages explains. At `high` effort, with a tool for sending the user a message available, the reminder leads the model to update the user more often and shortens its longest silent stretches, with no measurable change in task quality.

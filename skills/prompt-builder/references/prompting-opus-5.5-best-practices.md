@@ -77,7 +77,7 @@ Second, if you want more frequent or predictable updates, such as a one-line sta
 Third, if long tool-calling turns still go quiet for longer than you want, have your harness ask for an update. Count consecutive tool-calling steps that give the user nothing to read. After several in a row (five, for example), append a reminder like the following one after the latest tool results. If the turn stays quiet, stop after two or three reminders rather than sending more. In Anthropic's testing on agentic coding tasks, this roughly halved the share of tasks with a long silent stretch, with no measurable change in cost.
 
 ```text wrap
-The user hasn't heard from you in a while — say in a few words what you're doing, then continue.
+The user hasn't heard from you in a while: say in a few words what you're doing, then continue.
 ```
 
 ## Explore context in multi-app workflows

@@ -306,11 +306,11 @@ If the paragraph forms part of a larger composition, its relation to what preced
 
 According to the writer's purpose, he may, as indicated above, relate the body of the paragraph to the topic sentence in one or more of several different ways. He may make the meaning of the topic sentence clearer by restating it in other forms, by defining its terms, by denying the contrary, by giving illustrations or specific instances; he may establish it by proofs; or he may develop it by showing its implications and consequences. In a long paragraph, he may carry out several of these processes.
 
-1 Now, to be properly enjoyed, a walking tour should be gone upon alone. 2 If you go in a company, or even in pairs, it is no longer a walking tour in anything but name; it is something else and more in the nature of a picnic. 3 A walking tour should be gone upon alone, because freedom is of the essence; because you should be able to stop and go on, and follow this way or that, as the freak takes you; and because you must have your own pace, and neither trot alongside a champion walker, nor mince in time with a girl. 4 And you must be open to all impressions and let your thoughts take colour from what you see. 5 You should be as a pipe for any wind to play upon. 6 “I cannot see the wit,” says Hazlitt, “of walking and talking at the same time. 7 When I am in the country, I wish to vegetate like the country,” which is the gist of all that can be said upon the matter. 8 There should be no cackle of voices at your elbow, to jar on the meditative silence of the morning. 9 And so long as a man is reasoning he cannot surrender himself to that fine intoxication that comes of much motion in the open air, that begins in a sort of dazzle and sluggishness of the brain, and ends in a peace that passes comprehension.—Stevenson, Walking Tours.
+1 Now, to be properly enjoyed, a walking tour should be gone upon alone. 2 If you go in a company, or even in pairs, it is no longer a walking tour in anything but name; it is something else and more in the nature of a picnic. 3 A walking tour should be gone upon alone, because freedom is of the essence; because you should be able to stop and go on, and follow this way or that, as the freak takes you; and because you must have your own pace, and neither trot alongside a champion walker, nor mince in time with a girl. 4 And you must be open to all impressions and let your thoughts take colour from what you see. 5 You should be as a pipe for any wind to play upon. 6 “I cannot see the wit,” says Hazlitt, “of walking and talking at the same time. 7 When I am in the country, I wish to vegetate like the country,” which is the gist of all that can be said upon the matter. 8 There should be no cackle of voices at your elbow, to jar on the meditative silence of the morning. 9 And so long as a man is reasoning he cannot surrender himself to that fine intoxication that comes of much motion in the open air, that begins in a sort of dazzle and sluggishness of the brain, and ends in a peace that passes comprehension. Stevenson, Walking Tours.
 
 1 Topic sentence. 2 The meaning made clearer by denial of the contrary. 3 The topic sentence repeated, in abridged form, and supported by three reasons; the meaning of the third (“you must have your own pace”) made clearer by denying the contrary. 4 A fourth reason, stated in two forms. 5 The same reason, stated in still another form. 6–7 The same reason as stated by Hazlitt. 8 Repetition, in paraphrase, of the quotation from Hazlitt. 9 Final statement of the fourth reason, in language amplified and heightened to form a strong conclusion.
 
-1 It was chiefly in the eighteenth century that a very different conception of history grew up. 2 Historians then came to believe that their task was not so much to paint a picture as to solve a problem; to explain or illustrate the successive phases of national growth, prosperity, and adversity. 3 The history of morals, of industry, of intellect, and of art; the changes that take place in manners or beliefs; the dominant ideas that prevailed in successive periods; the rise, fall, and modification of political constitutions; in a word, all the conditions of national well-being became the subject of their works. 4 They sought rather to write a history of peoples than a history of kings. 5 They looked especially in history for the chain of causes and effects. 6 They undertook to study in the past the physiology of nations, and hoped by applying the experimental method on a large scale to deduce some lessons of real value about the conditions on which the welfare of society mainly depend.—Lecky, The Political Value of History.
+1 It was chiefly in the eighteenth century that a very different conception of history grew up. 2 Historians then came to believe that their task was not so much to paint a picture as to solve a problem; to explain or illustrate the successive phases of national growth, prosperity, and adversity. 3 The history of morals, of industry, of intellect, and of art; the changes that take place in manners or beliefs; the dominant ideas that prevailed in successive periods; the rise, fall, and modification of political constitutions; in a word, all the conditions of national well-being became the subject of their works. 4 They sought rather to write a history of peoples than a history of kings. 5 They looked especially in history for the chain of causes and effects. 6 They undertook to study in the past the physiology of nations, and hoped by applying the experimental method on a large scale to deduce some lessons of real value about the conditions on which the welfare of society mainly depend. Lecky, The Political Value of History.
 
 1 Topic sentence. 2 The meaning of the topic sentence made clearer; the new conception of history defined. 3 The definition expanded. 4 The definition explained by contrast. 5 The definition supplemented: another element in the new conception of history. 6 Conclusion: an important consequence of the new conception of history.
 
@@ -436,7 +436,7 @@ The bough of cherries some officious fool
 
 Broke in the orchard for her, the white mule
 
-She rode with round the terrace—all and each
+She rode with round the terrace, all and each
 
 Would draw from her alike the approving speech,
 
@@ -450,13 +450,13 @@ Taming a sea-horse, thought a rarity,
 
 Which Claus of Innsbruck cast in bronze for me.
 
-These words call up pictures. Recall how in The Bishop Orders his Tomb in St. Praxed's Church “the Renaissance spirit—its worldliness, inconsistency, pride, hypocrisy, ignorance of itself, love of art, of luxury, of good Latin,” to quote Ruskin's comment on the poem, is made manifest in specific details and in concrete terms.
+These words call up pictures. Recall how in The Bishop Orders his Tomb in St. Praxed's Church “the Renaissance spirit (its worldliness, inconsistency, pride, hypocrisy, ignorance of itself, love of art, of luxury, of good Latin),” to quote Ruskin's comment on the poem, is made manifest in specific details and in concrete terms.
 
 Prose, in particular narrative and descriptive prose, is made vivid by the same means. If the experiences of Jim Hawkins and of David Balfour, of Kim, of Nostromo, have seemed for the moment real to countless readers, if in reading Carlyle we have almost the sense of being physically present at the taking of the Bastille, it is because of the definiteness of the details and the concreteness of the terms used. It is not that every detail is given; that would be impossible, as well as to no purpose; but that all the significant details are given, and not vaguely, but with such definiteness that the reader, in imagination, can project himself into the scene.
 
 In exposition and in argument, the writer must likewise never lose his hold upon the concrete, and even when he is dealing with general principles, he must give particular instances of their application.
 
-“This superiority of specific expressions is clearly due to the effort required to translate words into thoughts. As we do not think in generals, but in particulars—as whenever any class of things is referred to, we represent it to ourselves by calling to mind individual members of it, it follows that when an abstract word is used, the hearer or reader has to choose, from his stock of images, one or more by which he may figure to himself the genus mentioned. In doing this, some delay must arise, some force be expended; and if by employing a specific term an appropriate image can be at once suggested, an economy is achieved, and a more vivid impression produced.”
+“This superiority of specific expressions is clearly due to the effort required to translate words into thoughts. As we do not think in generals, but in particulars, as whenever any class of things is referred to, we represent it to ourselves by calling to mind individual members of it, it follows that when an abstract word is used, the hearer or reader has to choose, from his stock of images, one or more by which he may figure to himself the genus mentioned. In doing this, some delay must arise, some force be expended; and if by employing a specific term an appropriate image can be at once suggested, an economy is achieved, and a more vivid impression produced.”
 
 Herbert Spencer, from whose Philosophy of Style the preceding paragraph is quoted, illustrates the principle by the sentences:
 
@@ -519,7 +519,7 @@ The third concert of the subscription series was given last evening, and a large
 
 Apart from its triteness and emptiness, the paragraph above is weak because of the structure of its sentences, with their mechanical symmetry and sing-song. Contrast with them the sentences in the paragraphs quoted under Rule 9, or in any piece of good English prose, as the preface (Before the Curtain) to Vanity Fair.
 
-If the writer finds that he has written a series of sentences of the type described, he should recast enough of them to remove the monotony, replacing them by simple sentences, by sentences of two clauses joined by a semicolon, by periodic sentences of two clauses, by sentences, loose or periodic, of three clauses—whichever best represent the real relations of the thought.
+If the writer finds that he has written a series of sentences of the type described, he should recast enough of them to remove the monotony, replacing them by simple sentences, by sentences of two clauses joined by a semicolon, by periodic sentences of two clauses, by sentences, loose or periodic, of three clauses, whichever best represent the real relations of the thought.
 
 ### Rule 15. Express co-ordinate ideas in similar form.
 
@@ -581,7 +581,7 @@ The Superintendent of the Chicago Division, who
 | Original | Revision |
 | --- | --- |
 | A proposal to amend the Sherman Act, which has been variously judged. | A proposal, which has been variously judged, to amend the Sherman Act. |
-| — | A proposal to amend the much-debated Sherman Act. |
+| (none) | A proposal to amend the much-debated Sherman Act. |
 | The grandson of William Henry Harrison, who | William Henry Harrison's grandson, who |
 
 A noun in apposition may come between antecedent and relative, because in such a combination no real ambiguity can arise.
