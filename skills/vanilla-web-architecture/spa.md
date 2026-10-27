@@ -7,7 +7,7 @@ One HTML file, with client-side routing between page components. These rules ext
 Add to the base folder layout:
 ```
 src/router.js        route table and navigation
-src/pages/<route>.js + <route>.css   one page Web Component per route, styled like any component
+src/pages/<route>.js + <route>.html + <route>.css   one page Web Component per route, built like any component
 ```
 
 ## Rules

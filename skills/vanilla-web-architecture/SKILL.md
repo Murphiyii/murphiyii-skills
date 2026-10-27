@@ -26,9 +26,10 @@ event -> action -> reducer -> store -> subscribed components re-render.
 
 ## Rules
 1. Use native ES modules (`<script type="module">`). One responsibility per file.
-2. Each UI piece is a Web Component (custom element) owning its markup, CSS and behavior
-   in one folder. Code that two or more components repeat (shadow-root setup, stylesheet
-   link, subscribe/unsubscribe, a DOM helper) lives in `components/base/`.
+2. Each UI piece is a Web Component (custom element) owning its markup (`<name>.html`),
+   CSS and behavior in one folder. Code that two or more components repeat (template
+   loading, shadow-root setup, stylesheet link, subscribe/unsubscribe, a DOM helper)
+   lives in `components/base/`.
 3. A component composes its own child components. Siblings communicate through the store,
    or through `CustomEvent`/`EventTarget` when the message is not state. Components read
    state from the store, dispatch actions, and reach data only through services.
@@ -56,11 +57,18 @@ event -> action -> reducer -> store -> subscribed components re-render.
    reaches into shadow roots, so component CSS stays unlayered, and CSS that two or more
    components share (a shadow-root reset, a visually-hidden helper) lives in
    `components/base/` and is linked like a sibling stylesheet.
-8. Rendering: update only the nodes that changed, and leave a focused input in place.
-   Write dynamic values with `textContent` or DOM APIs. Never use `innerHTML` with user
-   or remote data.
-9. Services and reducers are pure or take their dependencies as arguments. Cover them
-   with plain `*.test.js` files run by `node --test`, a dev-only tool.
+8. Markup lives in HTML files so it can be edited by hand. Static markup never lives in
+   JS strings or `createElement` chains. A component's structure is its `<name>.html`
+   template, which the base class fetches once per component, caches and clones into the
+   shadow root. Page content (headings, text, sections) is written in the page HTML as
+   the element's children and shown through a `<slot>` in the template. Repeated items
+   clone a nested `<template>` from the component's template file.
+9. Rendering: JS only writes dynamic values. Find nodes by `data-ref` attributes, update
+   only the nodes that changed, and leave a focused input in place. Write values with
+   `textContent` or DOM properties. Parsing the component's own same-origin template
+   file is the only `innerHTML` use. Never use `innerHTML` with user or remote data.
+10. Services and reducers are pure or take their dependencies as arguments. Cover them
+    with plain `*.test.js` files run by `node --test`, a dev-only tool.
 
 ## Folder layout
 ```
@@ -70,7 +78,7 @@ src/
   main.js       entry module, wiring only
   config.js     singletons (config, logger) as module-level exports
   components/base/            shared component code
-  components/<name>/<name>.js + <name>.css
+  components/<name>/<name>.js + <name>.html + <name>.css
   store/        createStore, reducers, actions
   services/     use-case logic
   api/          fetch/localStorage repositories
@@ -78,34 +86,61 @@ src/
 ```
 
 ## Wiring example
-Rules 4 and 5 in code (reducer, service, repository and component CSS omitted):
+Rules 4, 5, 8 and 9 in code (reducer, service, repository and component CSS omitted):
 ```js
 // components/base/base-element.js
+const templates = new Map();
+
+function loadTemplate(href) {
+  if (!templates.has(href)) {
+    templates.set(href, fetch(href).then(async (response) => {
+      if (!response.ok) throw new Error(`Template ${href}: ${response.status}`);
+      const template = document.createElement('template');
+      template.innerHTML = await response.text();
+      return template;
+    }));
+  }
+  return templates.get(href);
+}
+
 export class BaseElement extends HTMLElement {
   #store;
   #services;
   #unsubscribe;
+  #ready;
   get store() { return this.#store; }
   set store(value) { this.#store = value; this.#start(); }
   get services() { return this.#services; }
   set services(value) { this.#services = value; this.#start(); }
   connectedCallback() { this.#start(); }
   disconnectedCallback() { this.#unsubscribe?.(); this.#unsubscribe = null; }
-  #start() {
+  async #start() {
     if (!this.isConnected || !this.#store || !this.#services || this.#unsubscribe) return;
-    this.root ??= this.attachShadow({ mode: 'open' });
+    this.#ready ??= loadTemplate(this.constructor.template).then((template) => {
+      this.root = this.attachShadow({ mode: 'open' });
+      this.root.append(template.content.cloneNode(true));
+    });
+    await this.#ready;
+    // Re-check: the element may have been removed, or another call started it, during the fetch.
+    if (!this.isConnected || this.#unsubscribe) return;
     this.render();
     this.#unsubscribe = this.#store.subscribe(() => this.render());
   }
 }
-
+```
+```html
+<!-- components/todo-count/todo-count.html -->
+<p><span data-ref="count"></span> todos</p>
+```
+```js
 // components/todo-count/todo-count.js
 import { BaseElement } from '../base/base-element.js';
 
 class TodoCount extends BaseElement {
+  static template = new URL('./todo-count.html', import.meta.url).href;
   render() {
-    this.label ??= this.root.appendChild(document.createElement('p'));
-    this.label.textContent = `${this.store.getState().todos.length} todos`;
+    this.count ??= this.root.querySelector('[data-ref="count"]');
+    this.count.textContent = this.store.getState().todos.length;
   }
 }
 customElements.define('todo-count', TodoCount);
