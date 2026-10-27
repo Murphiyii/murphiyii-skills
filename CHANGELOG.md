@@ -14,6 +14,7 @@ Notable changes to this workspace. Format based on [Keep a Changelog](https://ke
 
 - Renamed the `angular-expert-skill` skill to `angular-expert` and `clearly-and-concisely` to `writing-clearly-and-concisely`. Copies installed under the old names do not update: copy the renamed folders again and remove the old ones.
 - Aligned all skills with the skill authoring best practices: third-person descriptions with explicit triggers, tables of contents on reference files over 100 lines, direct links from each SKILL.md to its reference files, and no time-sensitive wording.
+- `vanilla-web-architecture` skill: component markup now lives in a `<name>.html` template per component (plus slots and nested `<template>`s) instead of being built in JavaScript. The base class loads the template and stylesheets before first render, adds a run-once `setup()` hook, `this.refs` and re-render on attribute change, and the rules were tightened after testing with three sample apps.
 
 ### Removed
 
