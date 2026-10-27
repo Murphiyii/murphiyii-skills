@@ -13,7 +13,9 @@ src/pages/<route>.js   entry module for one page, wiring only
 
 ## Rules
 1. Each page loads exactly one entry module (`src/pages/<route>.js`) that creates the
-   store, registers the components the page uses and wires them.
+   store, registers the components the page uses and wires them. Beyond wiring, it only
+   handles the back/forward cache rehydrate in rule 4 (shared code for it goes in
+   `services/`) and the heading update in rule 7.
 2. Each page imports only the modules it needs.
 3. The shared page shell (header, nav, footer) is a Web Component imported by each page.
 4. The store resets on every navigation. State that must survive a page change goes
@@ -26,8 +28,8 @@ src/pages/<route>.js   entry module for one page, wiring only
    events. Otherwise a stale page can overwrite newer data on its next save.
 5. Every page links the same `base.css` (first, it sets the layer order) and `tokens.css`.
    Page-specific CSS lives next to its entry module.
-6. Static HTML uses relative paths for links, imports and assets, so the site works from
-   any folder. Components build their hrefs from a `routes` map in `config.js` that
+6. Page HTML files use relative paths for links, imports and assets, so the site works
+   from any folder. Components build their hrefs from a `routes` map in `config.js` that
    resolves each path with `new URL(path, import.meta.url)`, so a link is correct from
    any page depth.
 7. Each page has its own `<title>`, meta description and a single `<h1>`. When the

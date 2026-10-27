@@ -30,15 +30,20 @@ event -> action -> reducer -> store -> subscribed components re-render.
    CSS and behavior in one folder. Code that two or more components repeat (template
    loading, shadow-root setup, stylesheet link, subscribe/unsubscribe, a DOM helper)
    lives in `components/base/`.
-3. A component composes its own child components. Siblings communicate through the store,
-   or through `CustomEvent`/`EventTarget` when the message is not state. Components read
-   state from the store, dispatch actions, and reach data only through services.
+3. A component composes its own child components. It imports each child's module (a
+   missing import leaves an undefined element that fails silently) and, in `setup()`,
+   which the base class runs once after cloning the template, attaches its listeners and
+   assigns its `store` and `services` to the children in its template. Siblings
+   communicate through the store, or through `CustomEvent`/`EventTarget` when the message
+   is not state. Components read state from the store, dispatch actions, and reach data
+   only through services.
 4. `store/` exports a `createStore(reducer, initialState)` factory returning
    `getState()`, `dispatch(action)` and `subscribe(listener)`. The reducer updates state
    immutably. The entry module creates the store and the services once and assigns them
    as `store` and `services` properties to each top-level component, and each component
-   passes them to its children. The base class renders once the element is connected and
-   both `services` and `store` are set, in whatever order that happens.
+   passes them to its children. The base class renders once the element is connected,
+   both `services` and `store` are set, in whatever order that happens, and its template
+   and stylesheets have loaded.
 5. Data access lives in `api/` repositories (Repository pattern), use-case logic in
    `services/` (Service Layer), so swapping the data source never touches components.
    Durable state is written back by a `persistOnChange(store, repository)` subscriber in
@@ -46,27 +51,46 @@ event -> action -> reducer -> store -> subscribed components re-render.
    as an argument so importing it never touches `localStorage` and tests can pass a fake.
    The reducer stays pure.
 6. Singletons (config, logger) are module-level exports.
-7. CSS: each component adds a `<link rel="stylesheet">` to its own shadow root for its
-   sibling `.css` file, with the href resolved by `new URL('./x.css', import.meta.url).href`
-   because a bare relative href resolves against the page. Design tokens are CSS custom
-   properties in one `tokens.css` (they inherit into shadow roots). Styling lives in CSS
-   files. Page-level CSS (`tokens.css`, `base.css`, plus `layouts.css` or `utilities.css`
-   once a second use exists) goes in cascade layers, one `<link>` per file in the HTML and
-   no `@import`. `base.css` is linked first and opens with
-   `@layer reset, tokens, base, layouts, utilities;`. Page-level CSS, layered or not, never
-   reaches into shadow roots, so component CSS stays unlayered, and CSS that two or more
-   components share (a shadow-root reset, a visually-hidden helper) lives in
-   `components/base/` and is linked like a sibling stylesheet.
+7. CSS: the base class adds a `<link rel="stylesheet">` to each shadow root for the
+   shared `shadow-reset.css` and for the component's `static stylesheet`, its sibling
+   `.css` file, with the href resolved by `new URL('./x.css', import.meta.url).href`
+   because a bare relative href resolves against the page. It inserts the template only
+   after these stylesheets load (or fail), so markup never shows unstyled, and fetches
+   the template in parallel with them. Design tokens are CSS custom properties in one
+   `tokens.css` (they inherit into shadow roots). Styling lives in CSS files. Page-level
+   CSS (`tokens.css`, `base.css`, plus `layouts.css` or `utilities.css` once a second use
+   exists) goes in cascade layers, one `<link>` per file in the HTML and no `@import`. A `<link>` cannot assign a layer, so each file wraps its rules in
+   `@layer <name> { }` blocks (`base.css` holds both `reset` and `base`). `base.css` is
+   linked first and opens with `@layer reset, tokens, base, layouts, utilities;`. Its
+   `base` layer holds `:not(:defined) { visibility: hidden; }`, so page content inside a
+   component stays hidden until its module defines it, instead of showing then vanishing.
+   Page-level selectors never match inside shadow roots (only inherited properties such
+   as custom properties, `color` and `font` cross), so component CSS stays unlayered.
+   `shadow-reset.css` in `components/base/` holds CSS that every component shares,
+   including `[hidden], :host([hidden]) { display: none !important; }` so component
+   `display` rules never override the `hidden` attribute.
 8. Markup lives in HTML files so it can be edited by hand. Static markup never lives in
    JS strings or `createElement` chains. A component's structure is its `<name>.html`
    template, which the base class fetches once per component, caches and clones into the
    shadow root. Page content (headings, text, sections) is written in the page HTML as
    the element's children and shown through a `<slot>` in the template. Repeated items
-   clone a nested `<template>` from the component's template file.
-9. Rendering: JS only writes dynamic values. Find nodes by `data-ref` attributes, update
-   only the nodes that changed, and leave a focused input in place. Write values with
-   `textContent` or DOM properties. Parsing the component's own same-origin template
-   file is the only `innerHTML` use. Never use `innerHTML` with user or remote data.
+   clone a nested `<template>` from the component's template file with
+   `document.importNode(template.content, true)`, which upgrades already-defined child
+   components immediately, so setting their `store` and `services` before insertion
+   reaches the base class setters. Relative URLs inside a template (`src`, `href`)
+   resolve against the page, not the template file, so JS sets them with
+   `new URL(path, import.meta.url)` (in an MPA, from the `routes` map). Fixed states
+   (loading, empty, not found) are elements already in the HTML that JS shows or hides
+   with `hidden`. JS creates elements only for the base class's `<template>` and `<link>`
+   elements and, in an SPA, the router's page elements.
+9. Rendering: JS only writes dynamic values. The base class collects `[data-ref]` nodes
+   into `this.refs`. Keep node references there and never name a component field after a
+   built-in element property such as `title`, `hidden` or `id`, which it would silently
+   shadow. Update only the nodes that changed, and leave a focused input in place.
+   Write values with `textContent` or DOM properties. A component that reads attributes
+   lists them in `static observedAttributes`, and the base class re-renders when they
+   change. Parsing the component's own same-origin template file is
+   the only `innerHTML` use. Never use `innerHTML` with user or remote data.
 10. Services and reducers are pure or take their dependencies as arguments. Cover them
     with plain `*.test.js` files run by `node --test`, a dev-only tool.
 
@@ -77,7 +101,7 @@ package.json    {"type":"module"} and the test script, no dependencies
 src/
   main.js       entry module, wiring only
   config.js     singletons (config, logger) as module-level exports
-  components/base/            shared component code
+  components/base/            base-element.js, shadow-reset.css, other shared component code
   components/<name>/<name>.js + <name>.html + <name>.css
   store/        createStore, reducers, actions
   services/     use-case logic
@@ -86,10 +110,11 @@ src/
 ```
 
 ## Wiring example
-Rules 4, 5, 8 and 9 in code (reducer, service, repository and component CSS omitted):
+Rules 4, 5, 7, 8 and 9 in code (reducer, service, repository and CSS omitted):
 ```js
 // components/base/base-element.js
 const templates = new Map();
+const resetHref = new URL('./shadow-reset.css', import.meta.url).href;
 
 function loadTemplate(href) {
   if (!templates.has(href)) {
@@ -103,6 +128,13 @@ function loadTemplate(href) {
   return templates.get(href);
 }
 
+function stylesheetLink(href) {
+  const link = document.createElement('link');
+  link.rel = 'stylesheet';
+  link.href = href;
+  return link;
+}
+
 export class BaseElement extends HTMLElement {
   #store;
   #services;
@@ -114,12 +146,24 @@ export class BaseElement extends HTMLElement {
   set services(value) { this.#services = value; this.#start(); }
   connectedCallback() { this.#start(); }
   disconnectedCallback() { this.#unsubscribe?.(); this.#unsubscribe = null; }
+  attributeChangedCallback() { if (this.#unsubscribe) this.render(); }
+  async #prepare() {
+    this.root = this.attachShadow({ mode: 'open' });
+    const links = [resetHref, this.constructor.stylesheet].filter(Boolean).map(stylesheetLink);
+    const styled = links.map((link) => new Promise((resolve) => {
+      link.onload = link.onerror = resolve;
+    }));
+    this.root.append(...links);
+    // Insert the markup only once its CSS has loaded, so it never shows unstyled.
+    const [template] = await Promise.all([loadTemplate(this.constructor.template), ...styled]);
+    this.root.append(document.importNode(template.content, true));
+    const refs = this.root.querySelectorAll('[data-ref]');
+    this.refs = Object.fromEntries([...refs].map((node) => [node.dataset.ref, node]));
+    this.setup?.();
+  }
   async #start() {
     if (!this.isConnected || !this.#store || !this.#services || this.#unsubscribe) return;
-    this.#ready ??= loadTemplate(this.constructor.template).then((template) => {
-      this.root = this.attachShadow({ mode: 'open' });
-      this.root.append(template.content.cloneNode(true));
-    });
+    this.#ready ??= this.#prepare();
     await this.#ready;
     // Re-check: the element may have been removed, or another call started it, during the fetch.
     if (!this.isConnected || this.#unsubscribe) return;
@@ -138,9 +182,9 @@ import { BaseElement } from '../base/base-element.js';
 
 class TodoCount extends BaseElement {
   static template = new URL('./todo-count.html', import.meta.url).href;
+  static stylesheet = new URL('./todo-count.css', import.meta.url).href;
   render() {
-    this.count ??= this.root.querySelector('[data-ref="count"]');
-    this.count.textContent = this.store.getState().todos.length;
+    this.refs.count.textContent = this.store.getState().todos.length;
   }
 }
 customElements.define('todo-count', TodoCount);

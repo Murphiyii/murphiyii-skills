@@ -19,13 +19,18 @@ src/pages/<route>.js + <route>.html + <route>.css   one page Web Component per r
    Use the History API only when the user confirms the server falls back to `index.html`.
 4. Each route loads its page with a dynamic `import()`, so the first load carries only the
    current page.
-5. Page components are ordinary Web Components. They subscribe to the store in
-   `connectedCallback` and unsubscribe in `disconnectedCallback`.
+5. Page components are ordinary Web Components: the base class subscribes them to the
+   store once connected and unsubscribes them when removed. The router creates them,
+   so there is no page HTML: their headings and text live in their own template.
 6. The store lives for the whole session, so state carries across routes. State that must
    survive a reload goes through an `api/` repository and is rehydrated when `main.js`
    creates the store.
 7. On each route change, the router sets `document.title` from the route table's
    `title(params)` function (which may read loaded data through a service) and moves focus
-   to the new page's main heading, so screen readers announce the navigation.
+   to the new page's main heading, so screen readers announce the navigation. Templates
+   load asynchronously, so add a `rendered` promise to the base class that resolves
+   after the first render. The router awaits it before focusing the heading, which has
+   `tabindex="-1"` so it can take focus.
 8. The router assigns `store` and `services` as properties on each page before attaching
-   it. Route parameters reach pages as attributes.
+   it. Route parameters reach pages as attributes named so they never collide with global
+   attributes (`task-id`, not `id`).
